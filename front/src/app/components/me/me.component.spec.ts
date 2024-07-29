@@ -90,7 +90,6 @@ describe('MeComponent', () => {
     userService = TestBed.inject(UserService);
     matSnackBar = TestBed.inject(MatSnackBar);
     router = TestBed.inject(Router);
-
     fixture.detectChanges();
   });
 
