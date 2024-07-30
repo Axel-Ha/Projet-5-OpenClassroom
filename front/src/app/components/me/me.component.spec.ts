@@ -101,15 +101,9 @@ describe('MeComponent', () => {
     component.user = mockAdminUser;
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('p').textContent).toContain(
-      'Name: Jean TANNER'
-    );
-    expect(compiled.querySelector('p:nth-child(2)').textContent).toContain(
-      'Email: test@gmail.com'
-    );
-    expect(compiled.querySelector('p:nth-child(3)').textContent).toContain(
-      'You are admin'
-    );
+    expect(compiled.querySelector('p').textContent).toContain('Name: Jean TANNER');
+    expect(compiled.querySelector('p:nth-child(2)').textContent).toContain('Email: test@gmail.com');
+    expect(compiled.querySelector('p:nth-child(3)').textContent).toContain('You are admin');
   });
 
   it('should display the delete button for non-admin user', () => {
@@ -123,17 +117,11 @@ describe('MeComponent', () => {
     fixture.detectChanges();
 
     jest.spyOn(component, 'delete');
-    const button = fixture.nativeElement.querySelector(
-      'button[mat-raised-button][color="warn"]'
-    );
+    const button = fixture.nativeElement.querySelector('button[mat-raised-button][color="warn"]');
     button.click();
     expect(component.delete).toHaveBeenCalled();
     expect(userService.delete).toHaveBeenCalledWith('1');
-    expect(matSnackBar.open).toHaveBeenCalledWith(
-      'Your account has been deleted !',
-      'Close',
-      { duration: 3000 }
-    );
+    expect(matSnackBar.open).toHaveBeenCalledWith('Your account has been deleted !','Close',{ duration: 3000 });
     expect(router.navigate).toHaveBeenCalledWith(['/']);
     expect(sessionService.logOut).toHaveBeenCalled();
   });
