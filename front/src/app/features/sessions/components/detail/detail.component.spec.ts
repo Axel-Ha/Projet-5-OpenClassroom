@@ -69,19 +69,8 @@ describe('DetailComponent Integration Tests', () => {
         BrowserAnimationsModule
       ],
       providers: [
-        {
-          provide: SessionApiService,
-          useValue: {
-            detail: jest.fn(),
-            delete: jest.fn(),
-            participate: jest.fn(),
-            unParticipate: jest.fn(),
-          },
-        },
-        {
-          provide: TeacherService,
-          useValue: { detail: jest.fn().mockReturnValue(of(mockTeacher)) },
-        },
+        {provide: SessionApiService, useValue: {detail: jest.fn(),delete: jest.fn(),participate: jest.fn(),unParticipate: jest.fn()}},
+        { provide: TeacherService, useValue: { detail: jest.fn().mockReturnValue(of(mockTeacher))} },
         { provide: SessionService, useValue: mockSessionServiceAdmin },
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
         { provide: MatSnackBar, useValue: { open: jest.fn() } },
