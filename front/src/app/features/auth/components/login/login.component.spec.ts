@@ -30,6 +30,18 @@ describe('LoginComponent', () => {
     logIn: jest.fn(),
   };
 
+  const mockUser = {
+    id: 1,
+    token: '12345',
+    email: 'test@gmail.com',
+    username: 'JeSuisUnTest',
+    firstName: 'Jean',
+    lastName: 'TANNER',
+    password: 'test!1234',
+    admin: false,
+  };
+
+  
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoginComponent],
@@ -78,16 +90,6 @@ describe('LoginComponent', () => {
   });
 
   it('should login successfully', () => {
-    const mockUser = {
-      id: 1,
-      token: '12345',
-      email: 'test@gmail.com',
-      username: 'JeSuisUnTest',
-      firstName: 'Jean',
-      lastName: 'TANNER',
-      password: 'test!1234',
-      admin: false,
-    };
 
     mockAuthService.login.mockReturnValue(of(mockUser));
     component.submit();

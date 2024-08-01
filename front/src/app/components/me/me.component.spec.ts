@@ -29,7 +29,6 @@ describe('MeComponent', () => {
     },
     logOut: jest.fn(),
   };
-  const mockDate = new Date();
   const mockAdminUser = {
     id: 1,
     token: '12345',
@@ -39,8 +38,8 @@ describe('MeComponent', () => {
     lastName: 'TANNER',
     password: 'test!1234',
     admin: true,
-    createdAt: mockDate,
-    updateAt: mockDate,
+    createdAt: new Date(),
+    updateAt: new Date(),
   };
 
   const mockUser = {
@@ -52,8 +51,8 @@ describe('MeComponent', () => {
     lastName: 'TANNER',
     password: 'test!1234',
     admin: false,
-    createdAt: mockDate,
-    updateAt: mockDate,
+    createdAt: new Date(),
+    updateAt: new Date(),
   };
 
   beforeEach(async () => {
