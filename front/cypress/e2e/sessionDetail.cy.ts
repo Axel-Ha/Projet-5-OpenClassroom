@@ -5,7 +5,7 @@ describe('Session Detail spec', () => {
     description: 'Description Yoga Session 1',
     date: new Date(),
     teacher_id: 1,
-    users: [1,2],
+    users: [1, 2],
     createdAt: new Date(),
     updatedAt: new Date(),
   };
@@ -113,6 +113,17 @@ describe('Session Detail spec', () => {
       updateAt: new Date(),
     };
 
+    const mockSession1WithoutUser = {
+      id: 2,
+      name: 'Yoga Session 1',
+      description: 'Description Yoga Session 1',
+      date: new Date(),
+      teacher_id: 1,
+      users: [],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+
     beforeEach(() => {
       cy.visit('/login');
       cy.intercept('POST', '/api/auth/login', {
@@ -143,12 +154,12 @@ describe('Session Detail spec', () => {
       cy.intercept('POST', '/api/session/1/participate/1', {
         statusCode: 200,
         body: {},
-      }).as('participateSession1');
+      }).as('participate');
 
       cy.intercept('DELETE', '/api/session/1/participate/1', {
         statusCode: 200,
         body: {},
-      }).as('UnparticipateSession1');
+      }).as('Unparticipate');
 
       cy.get('input[formControlName=email]').type('test@gmail.com');
       cy.get('input[formControlName=password]').type(
@@ -161,39 +172,142 @@ describe('Session Detail spec', () => {
       cy.url().should('contain', '/sessions/detail/1');
     });
 
-    it('should go back when Back button is clicked', () => {
-      cy.get('button[mat-icon-button]').contains('arrow_back').click();
-      cy.url().should('not.contain', '/sessions/detail/1');
-    });
+      it('should go back when Back button is clicked', () => {
+        cy.get('button[mat-icon-button]').contains('arrow_back').click();
+        cy.url().should('not.contain', '/sessions/detail/1');
+      });
 
-    it('should not show delete button', () => {
-      cy.get('button[mat-raised-button]').contains('delete').should('not.exist');
-    });
+      it('should not show delete button', () => {
+        cy.get('button[mat-raised-button]').contains('delete').should('not.exist');
+      });
 
-    it('should show teacher name', () => {
-        cy.get('mat-card-subtitle').get('span.ml1').should('contain', mockTeacher.firstName + ' ' + mockTeacher.lastName);
-    });
+      it('should show teacher name', () => {
+          cy.get('mat-card-subtitle').get('span.ml1').should('contain', mockTeacher.firstName + ' ' + mockTeacher.lastName);
+      });
 
-    it('should show session title', () => {
-        cy.get('mat-card-title').get('h1').should('contain', 'Yoga Session 1');
-    });
-    it('should show Do not participate Button', () => {
-        cy.get('button').contains('Do not participate').should('be.visible');
-    });
+      it('should show session title', () => {
+          cy.get('mat-card-title').get('h1').should('contain', 'Yoga Session 1');
+      });
+      it('should show Do not participate Button', () => {
+          cy.get('button').contains('Do not participate').should('be.visible');
+      });
+  });
 
+  describe('Participate/Unparticipate', () => {
+    const mockUserNonAdmin = {
+      id: 1,
+      token: '12345',
+      email: 'test@gmail.com',
+      username: 'JeSuisUnTest',
+      firstName: 'Jean',
+      lastName: 'TANNER',
+      password: 'test!1234',
+      admin: false,
+      createdAt: new Date(),
+      updateAt: new Date(),
+    };
 
-    it('should unparcticipate to a session ', () => {
-      cy.intercept('POST', '/api/session/1/', {
+    const mockSession1WithoutUser = {
+      id: 2,
+      name: 'Yoga Session 1',
+      description: 'Description Yoga Session 1',
+      date: new Date(),
+      teacher_id: 1,
+      users: [],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+
+    beforeEach(() => {
+      cy.visit('/login');
+      cy.intercept('POST', '/api/auth/login', {
         statusCode: 200,
-        body: { mockSession1 },
-      }).as('participateSession1');
+        body: mockUserNonAdmin,
+      }).as('loginUser');
+
+      cy.intercept('GET', '/api/teacher/1', {
+        statusCode: 200,
+        body: mockTeacher,
+      }).as('getTeacher');
+
+      cy.intercept('GET', '/api/session', {
+        statusCode: 200,
+        body: mockSessions,
+      }).as('getSessions');
+
+      cy.intercept('GET', '/api/session/1', {
+        statusCode: 200,
+        body: mockSession1,
+      }).as('getSessions');
+
+      cy.intercept('GET', '/api/session/2', {
+        statusCode: 200,
+        body: mockSession2,
+      }).as('getSessions');
+
+      cy.intercept('POST', '/api/session/1/participate/1', {
+        statusCode: 200,
+        body: {},
+      }).as('participate');
+
+      cy.intercept('DELETE', '/api/session/1/participate/1', {
+        statusCode: 200,
+        body: {},
+      }).as('Unparticipate');
+
+      cy.get('input[formControlName=email]').type('test@gmail.com');
+      cy.get('input[formControlName=password]').type(
+        `${'test!1234'}{enter}{enter}`
+      );
+
+      cy.url().should('include', '/sessions');
+    });
+
+    it('should unparcticipate to a session', () => {
+      cy.intercept('GET', '/api/session/1', {
+        statusCode: 200,
+        body: mockSession1,
+      }).as('GetSession1');
+
+      cy.get('mat-card.item').eq(0).get('span.ml1').contains('Detail').click();
+      cy.url().should('contain', '/sessions/detail/1');
+
+      cy.intercept('GET', '/api/session/1', {
+        statusCode: 200,
+        body: mockSession1WithoutUser,
+      }).as('GetSessionWithoutUser');
 
       cy.get('button').contains('Do not participate').click();
 
       cy.get('button').contains('Participate').should('be.visible');
-      cy.get('mat-card').contains(mockSession1.users.length + ' attendees');
+      cy.get('mat-card-content')
+        .get('span.ml1')
+        .contains('attendees')
+        .should('contain', mockSession1WithoutUser.users.length + ' attendees');
     });
 
+    it('should parcticipate to a session', () => {
+      cy.intercept('GET', '/api/session/1', {
+        statusCode: 200,
+        body: mockSession1WithoutUser,
+      }).as('GetSessionWithoutUser');
 
+      cy.get('mat-card.item').eq(0).get('span.ml1').contains('Detail').click();
+      cy.url().should('contain', '/sessions/detail/1');
+
+      cy.intercept('GET', '/api/session/1', {
+        statusCode: 200,
+        body: mockSession1,
+      }).as('GetSession1');
+
+      cy.get('button').contains('Participate').click();
+
+      cy.get('button').contains('Do not participate').should('be.visible');
+      cy.get('mat-card-content')
+        .get('span.ml1')
+        .contains('attendees')
+        .should('contain', mockSession1.users.length + ' attendees');
+
+    });
   });
 });
