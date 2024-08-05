@@ -41,4 +41,11 @@ describe('SessionService', () => {
     expect(service.sessionInformation).toBeUndefined();
   });
 
+  it("should return the observable of isLogged", () => {
+    service.$isLogged().subscribe((isLogged) => {
+      expect(isLogged).toBe(true);
+    });
+    service.logIn(mockUser);
+  });
+
 });

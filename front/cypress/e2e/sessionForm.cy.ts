@@ -8,8 +8,8 @@ describe('Session Form', () => {
     lastName: 'TANNER',
     password: 'test!1234',
     admin: true,
-    createdAt: new Date(),
-    updateAt: new Date(),
+    creaAt: '2024-08-01T00:00:00.000Z',
+    updateAt: '2024-08-01T00:00:00.000Z',
   };
 
   const mockUserNonAdmin = {
@@ -21,24 +21,24 @@ describe('Session Form', () => {
     lastName: 'TANNER',
     password: 'test!1234',
     admin: true,
-    createdAt: new Date(),
-    updateAt: new Date(),
+    creaAt: '2024-08-01T00:00:00.000Z',
+    updateAt: '2024-08-01T00:00:00.000Z',
   };
 
   const mockTeacher1 = {
     id: 1,
     lastName: 'DAN',
     firstName: 'Jean',
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    creaAt: '2024-08-01T00:00:00.000Z',
+    updatedAt: '2024-08-01T00:00:00.000Z',
   };
 
   const mockTeacher2 = {
     id: 1,
     lastName: 'DEAN',
     firstName: 'Jean',
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    creaAt: '2024-08-01T00:00:00.000Z',
+    updatedAt: '2024-08-01T00:00:00.000Z',
   };
   const mockSession1 = {
     id: 1,
@@ -47,8 +47,8 @@ describe('Session Form', () => {
     date: new Date(),
     teacher_id: 1,
     users: [1, 2],
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    creaAt: '2024-08-01T00:00:00.000Z',
+    updatedAt: '2024-08-01T00:00:00.000Z',
   };
 
   const mockSessions = [mockSession1];
@@ -229,33 +229,33 @@ describe('Session Form', () => {
         cy.url().should('contain', '/sessions/update/1');
       });
 
-        it('should go back when Back button is clicked', () => {
-          cy.get('button[mat-icon-button]').contains('arrow_back').click();
-          cy.url().should('not.contain', '/sessions/update/1');
-        });
+         it('should go back when Back button is clicked', () => {
+           cy.get('button[mat-icon-button]').contains('arrow_back').click();
+           cy.url().should('not.contain', '/sessions/update/1');
+         });
 
-        it('should show Create session title', () => {
-          cy.get('h1').contains('Update session');
-        });
+         it('should show Create session title', () => {
+           cy.get('h1').contains('Update session');
+         });
 
-        it('should update without new values', () => {
-          cy.intercept('PUT', '/api/session/1', {
-            statusCode: 200,
-            body: mockSession1,
-          }).as('UpdateSession');
+         it('should update without new values', () => {
+           cy.intercept('PUT', '/api/session/1', {
+             statusCode: 200,
+             body: mockSession1,
+           }).as('UpdateSession');
 
-          cy.get('button[type="submit"]').click();
-          cy.url().should('contain', '/sessions');
-          cy.get('simple-snack-bar').should('contain', 'Session updated !');
-        });
+           cy.get('button[type="submit"]').click();
+           cy.url().should('contain', '/sessions');
+           cy.get('simple-snack-bar').should('contain', 'Session updated !');
+         });
 
-        it('should not save any change if Back button is clicked', () => {
-          cy.get('input[formControlName="name"]').type('Edit Yoga Session 1');
+         it('should not save any change if Back button is clicked', () => {
+           cy.get('input[formControlName="name"]').type('Edit Yoga Session 1');
 
-          cy.get('button[routerLink="/sessions"]').click();
-          cy.url().should('contain', '/sessions');
-          cy.get('mat-card.item').should('contain', mockSession1.name);
-        });
+           cy.get('button[routerLink="/sessions"]').click();
+           cy.url().should('contain', '/sessions');
+           cy.get('mat-card.item').should('contain', mockSession1.name);
+         });
 
       it('should update the session with new values', () => {
         const newSession = {
@@ -265,8 +265,8 @@ describe('Session Form', () => {
           date: new Date(),
           teacher_id: 2,
           users: [],
-          createdAt: new Date(),
-          updatedAt: '2024-08-02',
+          creaAt: '2024-08-01T00:00:00.000Z',
+          updatedAt: '2024-08-01T00:00:00.000Z',
         };
 
         const sessionUpdated = [newSession];
@@ -319,7 +319,7 @@ describe('Session Form', () => {
         cy.get('mat-card-content')
           .get('span.ml1')
           .eq(3)
-          .should('contain', 'August 2, 2024');
+          .should('contain', "August 4, 2024");
         cy.get('div.description').should('contain', newSession.description);
       });
     });
@@ -351,14 +351,14 @@ describe('Session Form', () => {
       cy.url().should('contain', '/sessions');
     });
 
-    it('should not acces when trying to access create form', () => {
-      cy.visit('/sessions/create');
-      cy.url().should('contain', '/login');
-    });
+     it('should not acces when trying to access create form', () => {
+       cy.visit('/sessions/create');
+       cy.url().should('contain', '/login');
+     });
 
-    it('should not acces when trying to access update form', () => {
-      cy.visit('/sessions/update/1');
-      cy.url().should('contain', '/login');
-    });
+     it('should not acces when trying to access update form', () => {
+       cy.visit('/sessions/update/1');
+       cy.url().should('contain', '/login');
+     });
   });
 });

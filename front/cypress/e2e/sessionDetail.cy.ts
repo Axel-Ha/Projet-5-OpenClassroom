@@ -6,8 +6,8 @@ describe('Session Detail spec', () => {
     date: new Date(),
     teacher_id: 1,
     users: [1, 2],
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    creaAt: '2024-08-01T00:00:00.000Z',
+    updatedAt: '2024-08-01T00:00:00.000Z',
   };
 
   const mockSession2 = {
@@ -17,16 +17,16 @@ describe('Session Detail spec', () => {
     date: new Date(),
     teacher_id: 1,
     users: [],
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    creaAt: '2024-08-01T00:00:00.000Z',
+    updatedAt: '2024-08-01T00:00:00.000Z',
   };
 
   const mockTeacher = {
     id: 1,
     lastName: 'DAN',
     firstName: 'Jean',
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    creaAt: '2024-08-01T00:00:00.000Z',
+    updatedAt: '2024-08-01T00:00:00.000Z',
   };
 
   const mockSessions = [mockSession1, mockSession2];
@@ -41,8 +41,8 @@ describe('Session Detail spec', () => {
       lastName: 'TANNER',
       password: 'test!1234',
       admin: true,
-      createdAt: new Date(),
-      updateAt: new Date(),
+      creaAt: '2024-08-01T00:00:00.000Z',
+      updateAt: '2024-08-01T00:00:00.000Z',
     };
     beforeEach(() => {
       cy.visit('/login');
@@ -109,7 +109,7 @@ describe('Session Detail spec', () => {
       lastName: 'TANNER',
       password: 'test!1234',
       admin: false,
-      createdAt: new Date(),
+      creaAt: '2024-08-01T00:00:00.000Z',
       updateAt: new Date(),
     };
 
@@ -120,8 +120,8 @@ describe('Session Detail spec', () => {
       date: new Date(),
       teacher_id: 1,
       users: [],
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      creaAt: '2024-08-01T00:00:00.000Z',
+      updatedAt: '2024-08-01T00:00:00.000Z',
     };
 
     beforeEach(() => {
@@ -203,8 +203,8 @@ describe('Session Detail spec', () => {
       lastName: 'TANNER',
       password: 'test!1234',
       admin: false,
-      createdAt: new Date(),
-      updateAt: new Date(),
+      creaAt: '2024-08-01T00:00:00.000Z',
+      updateAt: '2024-08-01T00:00:00.000Z',
     };
 
     const mockSession1WithoutUser = {
@@ -214,8 +214,8 @@ describe('Session Detail spec', () => {
       date: new Date(),
       teacher_id: 1,
       users: [],
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      creaAt: '2024-08-01T00:00:00.000Z',
+      updatedAt: '2024-08-01T00:00:00.000Z',
     };
 
     beforeEach(() => {

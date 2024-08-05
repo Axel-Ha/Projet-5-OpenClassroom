@@ -96,6 +96,12 @@ describe('MeComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it("should fetch the user's information on init", () => {
+    component.ngOnInit();
+    fixture.detectChanges();
+    expect(component.user).toEqual(mockAdminUser);
+  });
+
   it('should display user information', () => {
     component.user = mockAdminUser;
     fixture.detectChanges();
@@ -123,5 +129,13 @@ describe('MeComponent', () => {
     expect(matSnackBar.open).toHaveBeenCalledWith('Your account has been deleted !','Close',{ duration: 3000 });
     expect(router.navigate).toHaveBeenCalledWith(['/']);
     expect(sessionService.logOut).toHaveBeenCalled();
+  });
+
+  it("should navigate back when button is clicked", () => {
+    jest.spyOn(component, 'back');
+    const button = fixture.nativeElement.querySelector('button[mat-icon-button]');
+    button.click();
+    expect(component.back).toHaveBeenCalled();
+
   });
 });

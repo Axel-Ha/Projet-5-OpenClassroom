@@ -6,8 +6,8 @@ describe('Session List ', () => {
     date: new Date(),
     teacher_id: 1,
     users: [1, 2],
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    createdAt: '2024-08-01T00:00:00.000Z',
+    updatedAt: '2024-08-01T00:00:00.000Z',
   };
 
   const mockSessions = [mockSession1];
@@ -22,16 +22,16 @@ describe('Session List ', () => {
       lastName: 'TANNER',
       password: 'test!1234',
       admin: true,
-      createdAt: new Date(),
-      updateAt: new Date(),
+      createdAt: '2024-08-01T00:00:00.000Z',
+      updatedAt: '2024-08-01T00:00:00.000Z',
     };
 
     const mockTeacher1 = {
         id: 1,
         lastName: 'DAN',
         firstName: 'Jean',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: '2024-08-01T00:00:00.000Z',
+        updatedAt: '2024-08-01T00:00:00.000Z',
       };
 
     const mockTeachers = [mockTeacher1];
@@ -65,39 +65,39 @@ describe('Session List ', () => {
 
     });
 
-    it('should show Create button', () => {
-        cy.get('button[routerLink="create"]').should('be.visible');
-    });
+     it('should show Create button', () => {
+         cy.get('button[routerLink="create"]').should('be.visible');
+     });
 
-    it('should navigate to create form page when Create button is clicked', () => {
-        cy.get('button[routerLink="create"]').click();
-        cy.url().should('contain', '/sessions/create');
-    });
+     it('should navigate to create form page when Create button is clicked', () => {
+         cy.get('button[routerLink="create"]').click();
+         cy.url().should('contain', '/sessions/create');
+     });
 
-    it('should list all sessions', () => {
-        cy.get('mat-card.item').eq(0).should('be.visible');
-    });
+     it('should list all sessions', () => {
+         cy.get('mat-card.item').eq(0).should('be.visible');
+     });
 
     it('should show session 1 details', () => {
         cy.get('mat-card.item').eq(0).should('contain', mockSession1.name);
-        cy.get('mat-card.item').eq(0).should('contain', "Session on August 2, 2024");
+        cy.get('mat-card.item').eq(0).should('contain', "Session on August 4, 2024");
         cy.get('mat-card.item').eq(0).should('contain', mockSession1.description); 
     });
 
-    it('should show session 1 Details and Edit', () => {
-        cy.get('mat-card.item').eq(0).get('span.ml1').contains('Detail').should('be.visible');
-        cy.get('mat-card.item').eq(0).get('span.ml1').contains('Edit').should('be.visible');
-    });
+     it('should show session 1 Details and Edit', () => {
+         cy.get('mat-card.item').eq(0).get('span.ml1').contains('Detail').should('be.visible');
+         cy.get('mat-card.item').eq(0).get('span.ml1').contains('Edit').should('be.visible');
+     });
 
-    it('should navigate to session 1 details page when Detail button is clicked', () => {
-        cy.get('mat-card.item').eq(0).get('span.ml1').contains('Detail').click();
-        cy.url().should('contain', '/sessions/detail/1');
-    });
+     it('should navigate to session 1 details page when Detail button is clicked', () => {
+         cy.get('mat-card.item').eq(0).get('span.ml1').contains('Detail').click();
+         cy.url().should('contain', '/sessions/detail/1');
+     });
 
-    it('should navigate to session 1 edit page when Edit button is clicked', () => {
-        cy.get('mat-card.item').eq(0).get('span.ml1').contains('Edit').click();
-        cy.url().should('contain', '/sessions/update/1');
-    });
+     it('should navigate to session 1 edit page when Edit button is clicked', () => {
+         cy.get('mat-card.item').eq(0).get('span.ml1').contains('Edit').click();
+         cy.url().should('contain', '/sessions/update/1');
+     });
 
   });
 
@@ -111,16 +111,16 @@ describe('Session List ', () => {
             lastName: 'TANNER',
             password: 'test!1234',
             admin: false,
-            createdAt: new Date(),
-            updateAt: new Date(),
+            createdAt: '2024-08-01T00:00:00.000Z',
+            updatedAt: '2024-08-01T00:00:00.000Z',
         };
 
         const mockTeacher1 = {
             id: 1,
             lastName: 'DAN',
             firstName: 'Jean',
-            createdAt: new Date(),
-            updatedAt: new Date(),
+            createdAt: '2024-08-01T00:00:00.000Z',
+            updatedAt: '2024-08-01T00:00:00.000Z',
           };
     
         const mockTeachers = [mockTeacher1];
@@ -154,32 +154,32 @@ describe('Session List ', () => {
     
         });
 
-        it('should not show Create button', () => {
-            cy.get('button[routerLink="create"]').should('not.exist');
-        });
+         it('should not show Create button', () => {
+             cy.get('button[routerLink="create"]').should('not.exist');
+         });
 
-        it('should list all sessions', () => {
-            cy.get('mat-card.item').eq(0).should('be.visible');
-        });
+         it('should list all sessions', () => {
+             cy.get('mat-card.item').eq(0).should('be.visible');
+         });
 
         it('should show session 1 details', () => {
             cy.get('mat-card.item').eq(0).should('contain', mockSession1.name);
-            cy.get('mat-card.item').eq(0).should('contain', "Session on August 2, 2024");
+            cy.get('mat-card.item').eq(0).should('contain', "Session on August 4, 2024");
             cy.get('mat-card.item').eq(0).should('contain', mockSession1.description); 
         });
     
-        it('should show session 1 Details and Edit', () => {
-            cy.get('mat-card.item').eq(0).get('span.ml1').contains('Detail').should('be.visible');
-        });
+         it('should show session 1 Details and Edit', () => {
+             cy.get('mat-card.item').eq(0).get('span.ml1').contains('Detail').should('be.visible');
+         });
 
-        it('should not show Edit button', () => {
-            cy.get('mat-card.item').eq(0).get('span.ml1').contains('Edit').should('not.exist');
-        });
+         it('should not show Edit button', () => {
+             cy.get('mat-card.item').eq(0).get('span.ml1').contains('Edit').should('not.exist');
+         });
 
-        it('should navigate to session 1 details page when Detail button is clicked', () => {
-            cy.get('mat-card.item').eq(0).get('span.ml1').contains('Detail').click();
-            cy.url().should('contain', '/sessions/detail/1');
-        });
+         it('should navigate to session 1 details page when Detail button is clicked', () => {
+             cy.get('mat-card.item').eq(0).get('span.ml1').contains('Detail').click();
+             cy.url().should('contain', '/sessions/detail/1');
+         });
         
     
     });

@@ -26,7 +26,6 @@ describe('Register spec', () => {
         cy.get('input[formControlName=email]').type("test@gmail.com");
         cy.get('input[formControlName=password]').type(`${"test!1234"}{enter}{enter}`);
 
-        cy.get('button[type=submit]').click();
 
 
         cy.url().should('include', '/login')
@@ -44,9 +43,7 @@ describe('Register spec', () => {
         cy.get('input[formControlName=firstName]').type("firstName");
         cy.get('input[formControlName=lastName]').type("lastName");
         cy.get('input[formControlName=email]').type("test@gmail.com");
-        cy.get('input[formControlName=password]').type(`${"test!1234"}`);
-
-        cy.get('button[type=submit]').click();
+        cy.get('input[formControlName=password]').type(`${"test!1234"}{enter}{enter}`);
 
         cy.get('.error').should('be.visible');
     });

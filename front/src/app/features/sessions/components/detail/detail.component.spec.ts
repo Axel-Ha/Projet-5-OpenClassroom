@@ -120,6 +120,7 @@ describe('DetailComponent Integration Tests', () => {
     component.unParticipate();
     expect(unParticipate).toHaveBeenCalledWith('1', '1');
   });
+
 });
 
 
