@@ -43,7 +43,7 @@ class SessionServiceTest {
     }
 
     @Test
-    void delete(){
+    void testDelete(){
         Long sessionId = 1L;
         sessionService.delete(sessionId);
         verify(sessionRepository).deleteById(sessionId);
