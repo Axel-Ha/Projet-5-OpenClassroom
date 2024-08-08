@@ -5,12 +5,10 @@ import com.openclassrooms.starterjwt.exception.NotFoundException;
 import com.openclassrooms.starterjwt.models.Session;
 import com.openclassrooms.starterjwt.repository.SessionRepository;
 import com.openclassrooms.starterjwt.repository.UserRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import com.openclassrooms.starterjwt.models.User;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -32,6 +30,7 @@ class SessionServiceTest {
 
     @Mock
     private UserRepository userRepository;
+
 
     @Test
     void testCreateSession(){
