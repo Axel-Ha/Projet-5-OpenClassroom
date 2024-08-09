@@ -22,7 +22,7 @@ public class UserDetailsImplTest {
     private UserDetailsImpl userDetails;
 
     @Test
-    public void testGetters() {
+    void testGetters() {
         assertEquals(1L, userDetails.getId());
         assertEquals("test@gmail.com", userDetails.getUsername());
         assertEquals("Jean", userDetails.getFirstName());
