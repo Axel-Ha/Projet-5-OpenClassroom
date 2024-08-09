@@ -22,6 +22,16 @@ public class UserDetailsImplTest {
     private UserDetailsImpl userDetails;
 
     @Test
+    public void testGetters() {
+        assertEquals(1L, userDetails.getId());
+        assertEquals("test@gmail.com", userDetails.getUsername());
+        assertEquals("Jean", userDetails.getFirstName());
+        assertEquals("TANNER", userDetails.getLastName());
+        assertEquals(true, userDetails.getAdmin());
+        assertEquals("Test123", userDetails.getPassword());
+    }
+
+    @Test
     void getAuthoritiesTest(){
         Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
         assertTrue(authorities instanceof HashSet);
