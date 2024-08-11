@@ -42,7 +42,7 @@ class SessionServiceTest {
     }
 
     @Test
-    void testDelete(){
+    void testDeleteSession(){
         Long sessionId = 1L;
         sessionService.delete(sessionId);
         verify(sessionRepository).deleteById(sessionId);
@@ -50,7 +50,7 @@ class SessionServiceTest {
     }
 
     @Test
-    void testFindAll(){
+    void testFindAllSession(){
         Session mockSession1 = new Session();
         Session mockSession2 = new Session();
 
@@ -122,7 +122,7 @@ class SessionServiceTest {
     }
 
     @Test
-     void testParticipate_UserExist(){
+     void testParticipateToSession_UserExist(){
         Long sessionId = 1L;
         Long userId = 1L;
         User mockUser = new User();
@@ -143,7 +143,7 @@ class SessionServiceTest {
     }
 
     @Test
-     void testParticipate_UserNotExist(){
+     void testParticipateToSession_UserNotExist(){
         Long sessionId = 1L;
         Long userId = 1L;
         Session mockSession = new Session();
@@ -157,7 +157,7 @@ class SessionServiceTest {
     }
 
     @Test
-     void testParticipate_SessionNotExist(){
+     void testParticipateToSession_SessionNotExist(){
         Long sessionId = 1L;
         Long userId = 1L;
         User mockUser = new User();
@@ -170,7 +170,7 @@ class SessionServiceTest {
     }
 
     @Test
-    void testParticipate_SessionAndUserNotExist() {
+    void testParticipateToSession_SessionAndUserNotExist() {
         Long sessionId = 1L;
         Long userId = 1L;
 
@@ -186,7 +186,7 @@ class SessionServiceTest {
     }
 
     @Test
-     void testParticipate_UserAlreadyParticipate(){
+     void testParticipateToSession_UserAlreadyParticipate(){
         Long userId = 1L;
         User mockUser = new User();
         mockUser.setId(userId);
@@ -207,7 +207,7 @@ class SessionServiceTest {
     }
 
     @Test
-     void testNoLongerParticipate(){
+     void testNoLongerParticipateToSession(){
         Long userId = 1L;
         User mockUser = new User();
         mockUser.setId(userId);
@@ -230,7 +230,7 @@ class SessionServiceTest {
     }
 
     @Test
-     void testNoLongerParticipate_UserNotExist(){
+     void testNoLongerParticipateToSession_UserNotExist(){
         Long sessionId = 1L;
         Session mockSession = new Session();
         mockSession.setId(sessionId);
@@ -240,7 +240,7 @@ class SessionServiceTest {
     }
 
     @Test
-     void testNoLongerParticipate_SessionNotExist(){
+     void testNoLongerParticipateToSession_SessionNotExist(){
         Long sessionId = 1L;
         Long userId = 1L;
         User mockUser = new User();
@@ -254,7 +254,7 @@ class SessionServiceTest {
     }
 
     @Test
-     void testNoLongerParticipate_UserNotParticipate(){
+     void testNoLongerParticipateToSession_UserNotParticipate(){
         Long notParticipateUserId = 1L;
         User mockUser = new User();
         mockUser.setId(2L);
