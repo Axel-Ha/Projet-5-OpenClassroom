@@ -52,9 +52,6 @@ public class SessionControllerIntegrationTest {
     @Autowired
     ObjectMapper objectMapper;
 
-    @Autowired
-    SessionMapper sessionMapper;
-
     private String token;
 
     @BeforeEach
