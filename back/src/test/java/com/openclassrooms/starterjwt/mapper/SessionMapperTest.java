@@ -5,6 +5,7 @@ import com.openclassrooms.starterjwt.models.Session;
 import com.openclassrooms.starterjwt.models.Teacher;
 import com.openclassrooms.starterjwt.models.User;
 import com.openclassrooms.starterjwt.services.TeacherService;
+import com.openclassrooms.starterjwt.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mapstruct.factory.Mappers;
@@ -27,6 +28,9 @@ public class SessionMapperTest {
 
     @Mock
     TeacherService teacherService;
+
+    @Mock
+    UserService userService;
 
     @Test
     void toDtoTest_SessionNotNull(){

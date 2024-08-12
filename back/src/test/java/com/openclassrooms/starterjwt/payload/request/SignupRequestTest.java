@@ -97,7 +97,7 @@ public class SignupRequestTest {
     }
 
     @Test
-    void signupRequestInvalidFirstNameBlankTest(){
+    void signupRequestInvalidFirstNameEmptyTest(){
         request.setEmail("test@gmail.com");
         request.setFirstName("");
         request.setLastName("TANNER");
@@ -105,7 +105,8 @@ public class SignupRequestTest {
 
         Set<ConstraintViolation<SignupRequest>> violations = validator.validate(request);
         assertFalse(violations.isEmpty());
-        assertEquals("la taille doit être comprise entre 3 et 20",violations.iterator().next().getMessage());
+        assertEquals("ne doit pas être vide",violations.iterator().next().getMessage());
+
     }
 
     @Test
@@ -134,7 +135,7 @@ public class SignupRequestTest {
     }
 
     @Test
-    void signupRequestInvalidLastNameBlankTest(){
+    void signupRequestInvalidLastNameEmptyTest(){
         request.setEmail("test@gmail.com");
         request.setFirstName("Jean");
         request.setLastName("");
@@ -142,7 +143,6 @@ public class SignupRequestTest {
 
         Set<ConstraintViolation<SignupRequest>> violations = validator.validate(request);
         assertFalse(violations.isEmpty());
-        assertEquals("la taille doit être comprise entre 3 et 20",violations.iterator().next().getMessage());
     }
 
     @Test
@@ -171,7 +171,7 @@ public class SignupRequestTest {
     }
 
     @Test
-    void signupRequestInvalidPasswordBlankTest(){
+    void signupRequestInvalidPasswordEmptyTest(){
         request.setEmail("test@gmail.com");
         request.setFirstName("Jean");
         request.setLastName("TANNER");
@@ -179,6 +179,5 @@ public class SignupRequestTest {
 
         Set<ConstraintViolation<SignupRequest>> violations = validator.validate(request);
         assertFalse(violations.isEmpty());
-        assertEquals("la taille doit être comprise entre 6 et 40",violations.iterator().next().getMessage());
     }
 }

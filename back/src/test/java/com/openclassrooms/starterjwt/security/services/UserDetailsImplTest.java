@@ -23,12 +23,21 @@ public class UserDetailsImplTest {
 
     @Test
     void testGetters() {
-        assertEquals(1L, userDetails.getId());
-        assertEquals("test@gmail.com", userDetails.getUsername());
-        assertEquals("Jean", userDetails.getFirstName());
-        assertEquals("TANNER", userDetails.getLastName());
-        assertEquals(true, userDetails.getAdmin());
-        assertEquals("Test123", userDetails.getPassword());
+        UserDetailsImpl userDetail = UserDetailsImpl
+                .builder()
+                .id(1L)
+                .admin(true)
+                .firstName("Jean")
+                .lastName("TANNER")
+                .username("test@gmail.com")
+                .password("Test123")
+                .build();
+        assertEquals(1L, userDetail.getId());
+        assertEquals("test@gmail.com", userDetail.getUsername());
+        assertEquals("Jean", userDetail.getFirstName());
+        assertEquals("TANNER", userDetail.getLastName());
+        assertEquals(true, userDetail.getAdmin());
+        assertEquals("Test123", userDetail.getPassword());
     }
 
     @Test

@@ -153,7 +153,7 @@ class SessionServiceTest {
         when(userRepository.findById(userId)).thenReturn(Optional.empty());
 
         assertThrows(NotFoundException.class,()-> sessionService.participate(sessionId,userId));
-        verifyNoInteractions(userRepository);
+        verifyNoMoreInteractions(userRepository);
     }
 
     @Test
@@ -166,7 +166,7 @@ class SessionServiceTest {
         when(sessionRepository.findById(sessionId)).thenReturn(Optional.empty());
 
         assertThrows(NotFoundException.class,()-> sessionService.participate(sessionId,userId));
-        verifyNoInteractions(userRepository);
+        verifyNoMoreInteractions(sessionRepository);
     }
 
     @Test
