@@ -94,6 +94,14 @@ describe('DetailComponent Integration Tests', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should fetch session', () => {
+    component.ngOnInit();
+    expect(sessionApiService.detail).toHaveBeenCalledWith('1');
+    expect(teacherService.detail).toHaveBeenCalledWith('1');
+    expect(component.session).toEqual(mockSession);
+    expect(component.teacher).toEqual(mockTeacher);
+  });
+  
   it('should navigate back', () => {
     const windowHistoryBack = jest.spyOn(window.history, 'back');
     component.back();
@@ -113,12 +121,14 @@ describe('DetailComponent Integration Tests', () => {
     const participate = jest.spyOn(sessionApiService, 'participate').mockReturnValue(of());
     component.participate();
     expect(participate).toHaveBeenCalledWith('1', '1');
+    expect(sessionApiService.detail).toBeCalled();
   });
 
   it('should unparticipate to session', () => {
     const unParticipate = jest.spyOn(sessionApiService, 'unParticipate').mockReturnValue(of());
     component.unParticipate();
     expect(unParticipate).toHaveBeenCalledWith('1', '1');
+    expect(sessionApiService.detail).toBeCalled();
   });
 
 });
