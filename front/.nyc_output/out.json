@@ -1,6 +1,6 @@
 {
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\polyfills.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\polyfills.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\polyfills.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\polyfills.ts",
     "statementMap": {},
     "fnMap": {},
     "branchMap": {},
@@ -13,17 +13,17 @@
       "names": [],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\polyfills.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\polyfills.ts"
       ],
       "sourcesContent": [
         "/**\r\n * This file includes polyfills needed by Angular and is loaded before the app.\r\n * You can add your own extra polyfills to this file.\r\n *\r\n * This file is divided into 2 sections:\r\n *   1. Browser polyfills. These are applied before loading ZoneJS and are sorted by browsers.\r\n *   2. Application imports. Files imported after ZoneJS that should be loaded before your main\r\n *      file.\r\n *\r\n * The current setup is for so-called \"evergreen\" browsers; the last versions of browsers that\r\n * automatically update themselves. This includes recent versions of Safari, Chrome (including\r\n * Opera), Edge on the desktop, and iOS and Chrome on mobile.\r\n *\r\n * Learn more in https://angular.io/guide/browser-support\r\n */\r\n\r\n/***************************************************************************************************\r\n * BROWSER POLYFILLS\r\n */\r\n\r\n/**\r\n * By default, zone.js will patch all possible macroTask and DomEvents\r\n * user can disable parts of macroTask/DomEvents patch by setting following flags\r\n * because those flags need to be set before `zone.js` being loaded, and webpack\r\n * will put import in the top of bundle, so user need to create a separate file\r\n * in this directory (for example: zone-flags.ts), and put the following flags\r\n * into that file, and then add the following code before importing zone.js.\r\n * import './zone-flags';\r\n *\r\n * The flags allowed in zone-flags.ts are listed here.\r\n *\r\n * The following flags will work for all browsers.\r\n *\r\n * (window as any).__Zone_disable_requestAnimationFrame = true; // disable patch requestAnimationFrame\r\n * (window as any).__Zone_disable_on_property = true; // disable patch onProperty such as onclick\r\n * (window as any).__zone_symbol__UNPATCHED_EVENTS = ['scroll', 'mousemove']; // disable patch specified eventNames\r\n *\r\n *  in IE/Edge developer tools, the addEventListener will also be wrapped by zone.js\r\n *  with the following flag, it will bypass `zone.js` patch for IE/Edge\r\n *\r\n *  (window as any).__Zone_enable_cross_context_check = true;\r\n *\r\n */\r\n\r\n/***************************************************************************************************\r\n * Zone JS is required by default for Angular itself.\r\n */\r\nimport 'zone.js';  // Included with Angular CLI.\r\n\r\n\r\n/***************************************************************************************************\r\n * APPLICATION IMPORTS\r\n */\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "b82c8d9186ae763bab017d16c01a30370d74e84c"
+    "hash": "929df1e4b483dda794704d9d9092a22781a652f5"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\services\\session.service.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\services\\session.service.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\services\\session.service.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\services\\session.service.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -385,35 +385,35 @@
       }
     },
     "s": {
-      "0": 122,
-      "1": 122,
-      "2": 122,
-      "3": 6832,
-      "4": 84,
-      "5": 84,
-      "6": 84,
+      "0": 89,
+      "1": 89,
+      "2": 89,
+      "3": 4760,
+      "4": 55,
+      "5": 55,
+      "6": 55,
       "7": 2,
       "8": 2,
       "9": 2,
-      "10": 86,
-      "11": 122,
-      "12": 122,
-      "13": 122,
-      "14": 122
+      "10": 57,
+      "11": 89,
+      "12": 89,
+      "13": 89,
+      "14": 89
     },
     "f": {
-      "0": 122,
-      "1": 122,
-      "2": 6832,
-      "3": 84,
+      "0": 89,
+      "1": 89,
+      "2": 4760,
+      "3": 55,
       "4": 2,
-      "5": 86,
-      "6": 122
+      "5": 57,
+      "6": 89
     },
     "b": {
       "0": [
-        122,
-        122
+        89,
+        89
       ]
     },
     "inputSourceMap": {
@@ -438,17 +438,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\services\\session.service.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\services\\session.service.ts"
       ],
       "sourcesContent": [
         "import { Injectable } from '@angular/core';\r\nimport { BehaviorSubject, Observable } from 'rxjs';\r\nimport { SessionInformation } from '../interfaces/sessionInformation.interface';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class SessionService {\r\n\r\n  public isLogged = false;\r\n  public sessionInformation: SessionInformation | undefined;\r\n\r\n  private isLoggedSubject = new BehaviorSubject<boolean>(this.isLogged);\r\n\r\n  public $isLogged(): Observable<boolean> {\r\n    return this.isLoggedSubject.asObservable();\r\n  }\r\n\r\n  public logIn(user: SessionInformation): void {\r\n    this.sessionInformation = user;\r\n    this.isLogged = true;\r\n    this.next();\r\n  }\r\n\r\n  public logOut(): void {\r\n    this.sessionInformation = undefined;\r\n    this.isLogged = false;\r\n    this.next();\r\n  }\r\n\r\n  private next(): void {\r\n    this.isLoggedSubject.next(this.isLogged);\r\n  }\r\n}\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "b8c262dd9010889cccbc9e8bf74f4dd36fa6eded"
+    "hash": "dd1ad949df62909407123cc2e4afa3f99090820f"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\services\\user.service.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\services\\user.service.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\services\\user.service.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\services\\user.service.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -702,18 +702,18 @@
       }
     },
     "s": {
-      "0": 122,
+      "0": 89,
       "1": 20,
       "2": 20,
       "3": 20,
       "4": 2,
-      "5": 122,
+      "5": 89,
       "6": 20,
-      "7": 122,
-      "8": 122
+      "7": 89,
+      "8": 89
     },
     "f": {
-      "0": 122,
+      "0": 89,
       "1": 20,
       "2": 20,
       "3": 2,
@@ -743,17 +743,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\services\\user.service.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\services\\user.service.ts"
       ],
       "sourcesContent": [
         "import { HttpClient } from '@angular/common/http';\r\nimport { Injectable } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { User } from '../interfaces/user.interface';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class UserService {\r\n\r\n  private pathService = 'api/user';\r\n\r\n  constructor(private httpClient: HttpClient) { }\r\n\r\n  public getById(id: string): Observable<User> {\r\n    return this.httpClient.get<User>(`${this.pathService}/${id}`);\r\n  }\r\n\r\n  public delete(id: string): Observable<any> {\r\n    return this.httpClient.delete(`${this.pathService}/${id}`);\r\n  }\r\n}\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "3872220728c97f162a885c538327d01ef55599fe"
+    "hash": "227b2a0f756f6611a3c7eacf443a09c4362ea362"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\components\\me\\me.component.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\components\\me\\me.component.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\components\\me\\me.component.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\components\\me\\me.component.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -2285,7 +2285,7 @@
       "53": 58,
       "54": 58,
       "55": 58,
-      "56": 122,
+      "56": 89,
       "57": 20,
       "58": 20,
       "59": 20,
@@ -2297,9 +2297,9 @@
       "65": 2,
       "66": 2,
       "67": 2,
-      "68": 122,
+      "68": 89,
       "69": 20,
-      "70": 122,
+      "70": 89,
       "71": 178,
       "72": 20,
       "73": 20,
@@ -2316,14 +2316,14 @@
       "84": 178,
       "85": 158,
       "86": 158,
-      "87": 122
+      "87": 89
     },
     "f": {
       "0": 28,
       "1": 50,
       "2": 2,
       "3": 78,
-      "4": 122,
+      "4": 89,
       "5": 20,
       "6": 20,
       "7": 20,
@@ -2400,8 +2400,8 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\components\\me\\me.component.html",
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\components\\me\\me.component.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\components\\me\\me.component.html",
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\components\\me\\me.component.ts"
       ],
       "sourcesContent": [
         "<div class=\"m3\">\r\n  <mat-card>\r\n    <mat-card-title>\r\n      <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\r\n        <button mat-icon-button (click)=\"back()\">\r\n          <mat-icon>arrow_back</mat-icon>\r\n        </button>\r\n        <h1>User information</h1>\r\n      </div>\r\n    </mat-card-title>\r\n    <mat-card-content>\r\n      <div *ngIf=\"user\" fxLayout=\"column\" fxLayoutAlign=\"start center\">\r\n        <p>Name: {{ user.firstName }} {{ user.lastName | uppercase }}</p>\r\n        <p>Email: {{ user.email }}</p>\r\n        <p *ngIf=\"user.admin\" class=\"my2\">You are admin</p>\r\n        <div *ngIf=\"!user.admin\" fxLayout=\"column\" class=\"my2\" fxLayoutAlign=\"center center\">\r\n          <p>Delete my account:</p>\r\n          <button mat-raised-button color=\"warn\" (click)=\"delete()\">\r\n            <mat-icon>delete</mat-icon>\r\n            <span class=\"ml1\">Detail</span>\r\n          </button>\r\n        </div>\r\n        <div fxLayoutAlign=\"space-between center\" class=\"p2 w100\">\r\n\r\n          <p><i>Create at: </i> {{ user.createdAt | date: 'longDate'}}</p>\r\n          <p><i>Last update: </i> {{ user.updatedAt| date: 'longDate'}}</p>\r\n        </div>\r\n      </div>\r\n    </mat-card-content>\r\n  </mat-card>\r\n</div>\r\n",
@@ -2409,10 +2409,10 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "91540c36d18a836746cecb726749f2c749c517f9"
+    "hash": "e6938a2bf045896dccad9904f641a830113005d8"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\components\\not-found\\not-found.component.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\components\\not-found\\not-found.component.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\components\\not-found\\not-found.component.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\components\\not-found\\not-found.component.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -2654,18 +2654,18 @@
       }
     },
     "s": {
-      "0": 122,
-      "1": 122,
+      "0": 89,
+      "1": 89,
       "2": 0,
-      "3": 122,
+      "3": 89,
       "4": 0,
       "5": 0,
       "6": 0,
       "7": 0,
-      "8": 122
+      "8": 89
     },
     "f": {
-      "0": 122,
+      "0": 89,
       "1": 0,
       "2": 0
     },
@@ -2693,8 +2693,8 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\components\\not-found\\not-found.component.ts",
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\components\\not-found\\not-found.component.html"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\components\\not-found\\not-found.component.ts",
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\components\\not-found\\not-found.component.html"
       ],
       "sourcesContent": [
         "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-not-found',\r\n  templateUrl: './not-found.component.html',\r\n  styleUrls: ['./not-found.component.scss']\r\n})\r\nexport class NotFoundComponent {\r\n}\r\n",
@@ -2702,10 +2702,10 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "aca5b6fdf6b3865877c698332ba9b7b3c2288073"
+    "hash": "cdbf2da3ee7d339aa58ea28da1dffaf097d7afb1"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\guards\\auth.guard.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\guards\\auth.guard.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\guards\\auth.guard.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\guards\\auth.guard.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -2991,32 +2991,32 @@
       }
     },
     "s": {
-      "0": 122,
-      "1": 87,
-      "2": 87,
-      "3": 111,
-      "4": 3,
-      "5": 3,
-      "6": 108,
-      "7": 122,
-      "8": 87,
-      "9": 122,
-      "10": 122
+      "0": 89,
+      "1": 55,
+      "2": 55,
+      "3": 79,
+      "4": 0,
+      "5": 0,
+      "6": 79,
+      "7": 89,
+      "8": 55,
+      "9": 89,
+      "10": 89
     },
     "f": {
-      "0": 122,
-      "1": 87,
-      "2": 111,
-      "3": 87
+      "0": 89,
+      "1": 55,
+      "2": 79,
+      "3": 55
     },
     "b": {
       "0": [
-        3,
-        108
+        0,
+        79
       ],
       "1": [
-        87,
-        87
+        55,
+        55
       ]
     },
     "inputSourceMap": {
@@ -3037,17 +3037,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\guards\\auth.guard.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\guards\\auth.guard.ts"
       ],
       "sourcesContent": [
         "import {Injectable} from \"@angular/core\";\r\nimport {CanActivate, Router} from \"@angular/router\"; \r\nimport { SessionService } from \"../services/session.service\";\r\n\r\n@Injectable({providedIn: 'root'})\r\nexport class AuthGuard implements CanActivate {\r\n\r\n  constructor( \r\n    private router: Router,\r\n    private sessionService: SessionService,\r\n  ) {\r\n  }\r\n\r\n  public canActivate(): boolean {\r\n    if (!this.sessionService.isLogged) {\r\n      this.router.navigate(['login']);\r\n      return false;\r\n    }\r\n    return true;\r\n  }\r\n}"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "5870bc0b66ac1fb2b1173cd7d31af63777777ffb"
+    "hash": "b711dec2dd8e13c84d815dcc0b51b2707fa90034"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\guards\\unauth.guard.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\guards\\unauth.guard.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\guards\\unauth.guard.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\guards\\unauth.guard.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -3333,32 +3333,32 @@
       }
     },
     "s": {
-      "0": 122,
-      "1": 122,
-      "2": 122,
-      "3": 124,
+      "0": 89,
+      "1": 89,
+      "2": 89,
+      "3": 91,
       "4": 0,
       "5": 0,
-      "6": 124,
-      "7": 122,
-      "8": 122,
-      "9": 122,
-      "10": 122
+      "6": 91,
+      "7": 89,
+      "8": 89,
+      "9": 89,
+      "10": 89
     },
     "f": {
-      "0": 122,
-      "1": 122,
-      "2": 124,
-      "3": 122
+      "0": 89,
+      "1": 89,
+      "2": 91,
+      "3": 89
     },
     "b": {
       "0": [
         0,
-        124
+        91
       ],
       "1": [
-        122,
-        122
+        89,
+        89
       ]
     },
     "inputSourceMap": {
@@ -3379,17 +3379,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\guards\\unauth.guard.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\guards\\unauth.guard.ts"
       ],
       "sourcesContent": [
         "import {Injectable} from \"@angular/core\";\r\nimport {CanActivate, Router} from \"@angular/router\"; \r\nimport { SessionService } from \"../services/session.service\";\r\n\r\n@Injectable({providedIn: 'root'})\r\nexport class UnauthGuard implements CanActivate {\r\n\r\n  constructor( \r\n    private router: Router,\r\n    private sessionService: SessionService,\r\n  ) {\r\n  }\r\n\r\n  public canActivate(): boolean {\r\n    if (this.sessionService.isLogged) {\r\n      this.router.navigate(['rentals']);\r\n      return false;\r\n    }\r\n    return true;\r\n  }\r\n}"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "bf49df831c2f6b63f4c533d65fcea2c614eb3f1c"
+    "hash": "21e66b78d7e777ba330b994d344713b3b40e3d3a"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\app-routing.module.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\app-routing.module.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\app-routing.module.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\app-routing.module.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -3687,30 +3687,30 @@
       }
     },
     "s": {
-      "0": 122,
-      "1": 122,
-      "2": 122,
-      "3": 87,
-      "4": 87,
-      "5": 122,
-      "6": 122,
-      "7": 122,
-      "8": 122,
-      "9": 122,
-      "10": 122
+      "0": 89,
+      "1": 89,
+      "2": 89,
+      "3": 55,
+      "4": 55,
+      "5": 89,
+      "6": 89,
+      "7": 89,
+      "8": 89,
+      "9": 89,
+      "10": 89
     },
     "f": {
-      "0": 122,
-      "1": 122,
-      "2": 87,
-      "3": 87,
-      "4": 122,
-      "5": 122
+      "0": 89,
+      "1": 89,
+      "2": 55,
+      "3": 55,
+      "4": 89,
+      "5": 89
     },
     "b": {
       "0": [
-        122,
-        122
+        89,
+        89
       ]
     },
     "inputSourceMap": {
@@ -3737,17 +3737,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\app-routing.module.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\app-routing.module.ts"
       ],
       "sourcesContent": [
         "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { MeComponent } from './components/me/me.component';\r\nimport { NotFoundComponent } from './components/not-found/not-found.component';\r\nimport { AuthGuard } from './guards/auth.guard';\r\nimport { UnauthGuard } from './guards/unauth.guard';\r\n\r\nconst routes: Routes = [\r\n  {\r\n    path: '',\r\n    canActivate: [UnauthGuard],\r\n    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)\r\n  },\r\n  {\r\n    path: 'sessions',\r\n    canActivate: [AuthGuard],\r\n    loadChildren: () => import('./features/sessions/sessions.module').then(m => m.SessionsModule)\r\n  },\r\n  {\r\n    path: 'me',\r\n    canActivate: [AuthGuard],\r\n    component: MeComponent\r\n  },\r\n  { path: '404', component: NotFoundComponent },\r\n  { path: '**', redirectTo: '404' }\r\n];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forRoot(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class AppRoutingModule {\r\n}\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "1f6e8c5684e5326696e8f4069591a3facbca26b7"
+    "hash": "a892b60694c959067a1e1f3bdc2b823535ac11c3"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\services\\auth.service.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\services\\auth.service.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\services\\auth.service.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\services\\auth.service.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -4001,27 +4001,27 @@
       }
     },
     "s": {
-      "0": 122,
-      "1": 122,
-      "2": 122,
+      "0": 89,
+      "1": 89,
+      "2": 89,
       "3": 6,
-      "4": 86,
-      "5": 122,
-      "6": 122,
-      "7": 122,
-      "8": 122
+      "4": 57,
+      "5": 89,
+      "6": 89,
+      "7": 89,
+      "8": 89
     },
     "f": {
-      "0": 122,
-      "1": 122,
+      "0": 89,
+      "1": 89,
       "2": 6,
-      "3": 86,
-      "4": 122
+      "3": 57,
+      "4": 89
     },
     "b": {
       "0": [
-        122,
-        122
+        89,
+        89
       ]
     },
     "inputSourceMap": {
@@ -4043,17 +4043,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\services\\auth.service.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\services\\auth.service.ts"
       ],
       "sourcesContent": [
         "import { HttpClient } from '@angular/common/http';\r\nimport { Injectable } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { LoginRequest } from '../interfaces/loginRequest.interface';\r\nimport { RegisterRequest } from '../interfaces/registerRequest.interface';\r\nimport { SessionInformation } from 'src/app/interfaces/sessionInformation.interface';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class AuthService {\r\n\r\n  private pathService = 'api/auth';\r\n\r\n  constructor(private httpClient: HttpClient) { }\r\n\r\n  public register(registerRequest: RegisterRequest): Observable<void> {\r\n    return this.httpClient.post<void>(`${this.pathService}/register`, registerRequest);\r\n  }\r\n\r\n  public login(loginRequest: LoginRequest): Observable<SessionInformation> {\r\n    return this.httpClient.post<SessionInformation>(`${this.pathService}/login`, loginRequest);\r\n  }\r\n}\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "a825969c55ce6ba58731a4b3f2606744e74e9db8"
+    "hash": "374a9e64b60bbd491f51ac762c08d4de1bb1b463"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\app.component.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\app.component.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\app.component.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\app.component.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -4937,86 +4937,86 @@
       }
     },
     "s": {
-      "0": 2286,
-      "1": 84,
-      "2": 84,
-      "3": 84,
-      "4": 84,
-      "5": 84,
-      "6": 84,
-      "7": 84,
-      "8": 84,
-      "9": 84,
+      "0": 1570,
+      "1": 55,
+      "2": 55,
+      "3": 55,
+      "4": 55,
+      "5": 55,
+      "6": 55,
+      "7": 55,
+      "8": 55,
+      "9": 55,
       "10": 0,
       "11": 0,
       "12": 0,
-      "13": 84,
-      "14": 84,
-      "15": 4754,
-      "16": 124,
-      "17": 124,
-      "18": 124,
-      "19": 124,
-      "20": 124,
-      "21": 124,
-      "22": 122,
-      "23": 122,
-      "24": 122,
-      "25": 122,
-      "26": 6832,
+      "13": 55,
+      "14": 55,
+      "15": 3336,
+      "16": 91,
+      "17": 91,
+      "18": 91,
+      "19": 91,
+      "20": 91,
+      "21": 91,
+      "22": 89,
+      "23": 89,
+      "24": 89,
+      "25": 89,
+      "26": 4760,
       "27": 0,
       "28": 0,
-      "29": 122,
-      "30": 122,
-      "31": 122,
-      "32": 6954,
-      "33": 122,
-      "34": 122,
-      "35": 122,
-      "36": 122,
-      "37": 122,
-      "38": 122,
-      "39": 122,
-      "40": 122,
-      "41": 122,
-      "42": 122,
-      "43": 6954,
-      "44": 6832,
-      "45": 6832,
-      "46": 6832,
-      "47": 122
+      "29": 89,
+      "30": 89,
+      "31": 89,
+      "32": 4849,
+      "33": 89,
+      "34": 89,
+      "35": 89,
+      "36": 89,
+      "37": 89,
+      "38": 89,
+      "39": 89,
+      "40": 89,
+      "41": 89,
+      "42": 89,
+      "43": 4849,
+      "44": 4760,
+      "45": 4760,
+      "46": 4760,
+      "47": 89
     },
     "f": {
-      "0": 2286,
+      "0": 1570,
       "1": 0,
-      "2": 4754,
-      "3": 122,
-      "4": 122,
-      "5": 6832,
+      "2": 3336,
+      "3": 89,
+      "4": 89,
+      "5": 4760,
       "6": 0,
-      "7": 122,
-      "8": 6954
+      "7": 89,
+      "8": 4849
     },
     "b": {
       "0": [
-        84,
-        2202
+        55,
+        1515
       ],
       "1": [
-        124,
-        4630
+        91,
+        3245
       ],
       "2": [
-        122,
-        122
+        89,
+        89
       ],
       "3": [
-        122,
-        6832
+        89,
+        4760
       ],
       "4": [
-        6832,
-        122
+        4760,
+        89
       ]
     },
     "inputSourceMap": {
@@ -5042,8 +5042,8 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\app.component.html",
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\app.component.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\app.component.html",
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\app.component.ts"
       ],
       "sourcesContent": [
         "<div class=\"app\">\r\n  <mat-toolbar color=\"primary\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n    <span>Yoga app</span>\r\n    <div *ngIf=\"$isLogged() | async; else notLogged\">\r\n      <span routerLink=\"sessions\" class=\"link\">Sessions</span>\r\n      <span routerLink=\"me\" class=\"link\">Account</span>\r\n      <span (click)=\"logout()\" class=\"link\">Logout</span>\r\n    </div>\r\n    <ng-template #notLogged>\r\n      <div>\r\n        <span routerLink=\"login\" class=\"link\">Login</span>\r\n        <span routerLink=\"register\" class=\"link\">Register</span>\r\n      </div>\r\n    </ng-template>\r\n  </mat-toolbar>\r\n  <div>\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n</div>\r\n",
@@ -5051,10 +5051,10 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "5ebcec6353bc3f6fbdb6eb6e1f0074dd2016fe44"
+    "hash": "8b1311e138671c2fb38580a605e12d70455a62fa"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\interceptors\\jwt.interceptor.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\interceptors\\jwt.interceptor.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\interceptors\\jwt.interceptor.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\interceptors\\jwt.interceptor.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -5320,30 +5320,30 @@
       }
     },
     "s": {
-      "0": 122,
-      "1": 90,
-      "2": 304,
-      "3": 212,
-      "4": 304,
-      "5": 122,
-      "6": 90,
-      "7": 122,
-      "8": 122
+      "0": 89,
+      "1": 61,
+      "2": 222,
+      "3": 159,
+      "4": 222,
+      "5": 89,
+      "6": 61,
+      "7": 89,
+      "8": 89
     },
     "f": {
-      "0": 122,
-      "1": 90,
-      "2": 304,
-      "3": 90
+      "0": 89,
+      "1": 61,
+      "2": 222,
+      "3": 61
     },
     "b": {
       "0": [
-        212,
-        92
+        159,
+        63
       ],
       "1": [
-        90,
-        90
+        61,
+        61
       ]
     },
     "inputSourceMap": {
@@ -5371,17 +5371,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\interceptors\\jwt.interceptor.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\interceptors\\jwt.interceptor.ts"
       ],
       "sourcesContent": [
         "import { HttpHandler, HttpInterceptor, HttpRequest } from \"@angular/common/http\";\r\nimport { Injectable } from \"@angular/core\";\r\nimport { SessionService } from '../services/session.service';\r\n\r\n@Injectable({ providedIn: 'root' })\r\nexport class JwtInterceptor implements HttpInterceptor {\r\n  constructor(private sessionService: SessionService) {}\r\n\r\n  public intercept(request: HttpRequest<any>, next: HttpHandler) {\r\n    if (this.sessionService.isLogged) {\r\n      request = request.clone({\r\n        setHeaders: {\r\n          Authorization: `Bearer ${this.sessionService.sessionInformation!.token}`,\r\n        },\r\n      });\r\n    }\r\n    return next.handle(request);\r\n  }\r\n}\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "1b90e8ed0ec5637ac767e11a924624c7689e3793"
+    "hash": "2858dc2ee3974eca1f3fd627e2a8a676ca427032"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\app.module.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\app.module.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\app.module.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\app.module.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -5543,22 +5543,22 @@
       }
     },
     "s": {
-      "0": 122,
-      "1": 122,
-      "2": 122,
-      "3": 122,
-      "4": 122,
-      "5": 122,
-      "6": 122
+      "0": 89,
+      "1": 89,
+      "2": 89,
+      "3": 89,
+      "4": 89,
+      "5": 89,
+      "6": 89
     },
     "f": {
-      "0": 122,
-      "1": 122
+      "0": 89,
+      "1": 89
     },
     "b": {
       "0": [
-        122,
-        122
+        89,
+        89
       ]
     },
     "inputSourceMap": {
@@ -5588,17 +5588,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\app.module.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\app.module.ts"
       ],
       "sourcesContent": [
         "import { NgModule } from '@angular/core';\r\nimport { MatSnackBarModule } from '@angular/material/snack-bar';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\n\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { NotFoundComponent } from './components/not-found/not-found.component';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatToolbarModule } from '@angular/material/toolbar';\r\nimport { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';\r\nimport { JwtInterceptor } from './interceptors/jwt.interceptor';\r\nimport { MatCardModule } from '@angular/material/card';\r\nimport { FlexLayoutModule } from '@angular/flex-layout';\r\nimport { MeComponent } from './components/me/me.component';\r\n\r\nconst materialModule = [\r\n  MatButtonModule,\r\n  MatCardModule,\r\n  MatIconModule,\r\n  MatSnackBarModule,\r\n  MatToolbarModule,\r\n]\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    NotFoundComponent,\r\n    MeComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    BrowserAnimationsModule, \r\n    FlexLayoutModule,\r\n    HttpClientModule,\r\n    ...materialModule\r\n  ],\r\n  providers: [\r\n    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },\r\n  ],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule { }\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "07cce54021c1416bb04c3ec0e80df5764fa39b72"
+    "hash": "a2c3a91a283b10d7da690626cc3ca65aa77cc3d3"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\environments\\environment.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\environments\\environment.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\environments\\environment.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\environments\\environment.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -5614,7 +5614,7 @@
     "fnMap": {},
     "branchMap": {},
     "s": {
-      "0": 122
+      "0": 89
     },
     "f": {},
     "b": {},
@@ -5628,17 +5628,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\environments\\environment.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\environments\\environment.ts"
       ],
       "sourcesContent": [
         "export const environment = {\r\n  baseUrl: 'localhost:8080/api/',\r\n  production: false\r\n};\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "f3c9cbff4f4b02f84e9a5360a8cbba1905b1059c"
+    "hash": "2b179a72ebf279bfcf11dde8155976f19d61d14f"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\main.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\main.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\main.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\main.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -5746,9 +5746,9 @@
       }
     },
     "s": {
-      "0": 122,
+      "0": 89,
       "1": 0,
-      "2": 122,
+      "2": 89,
       "3": 0
     },
     "f": {
@@ -5757,7 +5757,7 @@
     "b": {
       "0": [
         0,
-        122
+        89
       ]
     },
     "inputSourceMap": {
@@ -5777,17 +5777,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\main.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\main.ts"
       ],
       "sourcesContent": [
         "import { enableProdMode } from '@angular/core';\r\nimport { platformBrowserDynamic } from '@angular/platform-browser-dynamic';\r\n\r\nimport { AppModule } from './app/app.module';\r\nimport { environment } from './environments/environment';\r\n\r\nif (environment.production) {\r\n  enableProdMode();\r\n}\r\n\r\nplatformBrowserDynamic().bootstrapModule(AppModule)\r\n  .catch(err => console.error(err));\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "713401d5a08837736302c40e05eebe44eda7668b"
+    "hash": "ef5d1ab5a57da29595451f3a7565221ff560e26a"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\components\\login\\login.component.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\components\\login\\login.component.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\components\\login\\login.component.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\components\\login\\login.component.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -6825,71 +6825,71 @@
       "1": 2,
       "2": 2,
       "3": 2,
-      "4": 122,
-      "5": 112,
-      "6": 112,
-      "7": 112,
-      "8": 112,
-      "9": 112,
-      "10": 112,
-      "11": 112,
-      "12": 86,
-      "13": 86,
-      "14": 84,
-      "15": 84,
+      "4": 89,
+      "5": 79,
+      "6": 79,
+      "7": 79,
+      "8": 79,
+      "9": 79,
+      "10": 79,
+      "11": 79,
+      "12": 57,
+      "13": 57,
+      "14": 55,
+      "15": 55,
       "16": 2,
-      "17": 122,
-      "18": 112,
-      "19": 122,
-      "20": 3868,
-      "21": 112,
-      "22": 112,
-      "23": 112,
-      "24": 112,
-      "25": 112,
-      "26": 86,
-      "27": 112,
-      "28": 112,
-      "29": 112,
-      "30": 112,
-      "31": 112,
-      "32": 112,
-      "33": 112,
-      "34": 172,
-      "35": 112,
-      "36": 112,
-      "37": 112,
-      "38": 112,
-      "39": 112,
-      "40": 112,
-      "41": 112,
-      "42": 112,
-      "43": 3868,
-      "44": 3756,
-      "45": 3756,
-      "46": 3756,
-      "47": 3756,
-      "48": 3756,
-      "49": 3756,
-      "50": 3756,
-      "51": 3756,
-      "52": 3756,
-      "53": 3756,
-      "54": 3756,
-      "55": 3756,
-      "56": 122
+      "17": 89,
+      "18": 79,
+      "19": 89,
+      "20": 2530,
+      "21": 79,
+      "22": 79,
+      "23": 79,
+      "24": 79,
+      "25": 79,
+      "26": 57,
+      "27": 79,
+      "28": 79,
+      "29": 79,
+      "30": 79,
+      "31": 79,
+      "32": 79,
+      "33": 79,
+      "34": 114,
+      "35": 79,
+      "36": 79,
+      "37": 79,
+      "38": 79,
+      "39": 79,
+      "40": 79,
+      "41": 79,
+      "42": 79,
+      "43": 2530,
+      "44": 2451,
+      "45": 2451,
+      "46": 2451,
+      "47": 2451,
+      "48": 2451,
+      "49": 2451,
+      "50": 2451,
+      "51": 2451,
+      "52": 2451,
+      "53": 2451,
+      "54": 2451,
+      "55": 2451,
+      "56": 89
     },
     "f": {
       "0": 6,
-      "1": 122,
-      "2": 112,
-      "3": 86,
-      "4": 84,
+      "1": 89,
+      "2": 79,
+      "3": 57,
+      "4": 55,
       "5": 2,
-      "6": 112,
-      "7": 3868,
-      "8": 86,
-      "9": 172
+      "6": 79,
+      "7": 2530,
+      "8": 57,
+      "9": 114
     },
     "b": {
       "0": [
@@ -6897,24 +6897,24 @@
         4
       ],
       "1": [
-        112,
-        112
+        79,
+        79
       ],
       "2": [
-        112,
-        3756
+        79,
+        2451
       ],
       "3": [
-        3756,
-        112
+        2451,
+        79
       ],
       "4": [
-        3584,
-        172
+        2337,
+        114
       ],
       "5": [
-        3584,
-        172
+        2337,
+        114
       ]
     },
     "inputSourceMap": {
@@ -6955,8 +6955,8 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\components\\login\\login.component.ts",
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\components\\login\\login.component.html"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\components\\login\\login.component.ts",
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\components\\login\\login.component.html"
       ],
       "sourcesContent": [
         "import { Component } from '@angular/core';\r\nimport { FormBuilder, Validators } from '@angular/forms';\r\nimport { Router } from '@angular/router';\r\nimport { SessionInformation } from 'src/app/interfaces/sessionInformation.interface';\r\nimport { SessionService } from 'src/app/services/session.service';\r\nimport { LoginRequest } from '../../interfaces/loginRequest.interface';\r\nimport { AuthService } from '../../services/auth.service';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  templateUrl: './login.component.html',\r\n  styleUrls: ['./login.component.scss']\r\n})\r\nexport class LoginComponent {\r\n  public hide = true;\r\n  public onError = false;\r\n\r\n  public form = this.fb.group({\r\n    email: [\r\n      '',\r\n      [\r\n        Validators.required,\r\n        Validators.email\r\n      ]\r\n    ],\r\n    password: [\r\n      '',\r\n      [\r\n        Validators.required,\r\n        Validators.min(3)\r\n      ]\r\n    ]\r\n  });\r\n\r\n  constructor(private authService: AuthService,\r\n              private fb: FormBuilder,\r\n              private router: Router,\r\n              private sessionService: SessionService) {\r\n  }\r\n\r\n  public submit(): void {\r\n    const loginRequest = this.form.value as LoginRequest;\r\n    this.authService.login(loginRequest).subscribe({\r\n      next: (response: SessionInformation) => {\r\n        this.sessionService.logIn(response);\r\n        this.router.navigate(['/sessions']);\r\n      },\r\n      error: error => this.onError = true,\r\n    });\r\n  }\r\n}\r\n",
@@ -6964,10 +6964,10 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "284eda52746a4b0c2777aaf12a33271ef5059d4d"
+    "hash": "5da345a893591c63246c91b9e78897b8f7c6b546"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\components\\register\\register.component.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\components\\register\\register.component.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\components\\register\\register.component.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\components\\register\\register.component.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -7829,7 +7829,7 @@
       "1": 2,
       "2": 2,
       "3": 2,
-      "4": 122,
+      "4": 89,
       "5": 12,
       "6": 12,
       "7": 12,
@@ -7839,9 +7839,9 @@
       "11": 6,
       "12": 2,
       "13": 4,
-      "14": 122,
+      "14": 89,
       "15": 12,
-      "16": 122,
+      "16": 89,
       "17": 556,
       "18": 12,
       "19": 12,
@@ -7873,11 +7873,11 @@
       "45": 544,
       "46": 544,
       "47": 544,
-      "48": 122
+      "48": 89
     },
     "f": {
       "0": 20,
-      "1": 122,
+      "1": 89,
       "2": 12,
       "3": 6,
       "4": 2,
@@ -7943,8 +7943,8 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\components\\register\\register.component.ts",
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\components\\register\\register.component.html"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\components\\register\\register.component.ts",
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\components\\register\\register.component.html"
       ],
       "sourcesContent": [
         "import { Component } from '@angular/core';\r\nimport { FormBuilder, Validators } from '@angular/forms';\r\nimport { Router } from '@angular/router';\r\nimport { AuthService } from '../../services/auth.service';\r\nimport { RegisterRequest } from '../../interfaces/registerRequest.interface';\r\n\r\n@Component({\r\n  selector: 'app-register',\r\n  templateUrl: './register.component.html',\r\n  styleUrls: ['./register.component.scss']\r\n})\r\nexport class RegisterComponent {\r\n\r\n  public onError = false;\r\n\r\n  public form = this.fb.group({\r\n    email: [\r\n      '',\r\n      [\r\n        Validators.required,\r\n        Validators.email\r\n      ]\r\n    ],\r\n    firstName: [\r\n      '',\r\n      [\r\n        Validators.required,\r\n        Validators.min(3),\r\n        Validators.max(20)\r\n      ]\r\n    ],\r\n    lastName: [\r\n      '',\r\n      [\r\n        Validators.required,\r\n        Validators.min(3),\r\n        Validators.max(20)\r\n      ]\r\n    ],\r\n    password: [\r\n      '',\r\n      [\r\n        Validators.required,\r\n        Validators.min(3),\r\n        Validators.max(40)\r\n      ]\r\n    ]\r\n  });\r\n\r\n  constructor(private authService: AuthService,\r\n              private fb: FormBuilder,\r\n              private router: Router) {\r\n  }\r\n\r\n  public submit(): void {\r\n    const registerRequest = this.form.value as RegisterRequest;\r\n    this.authService.register(registerRequest).subscribe({\r\n        next: (_: void) => this.router.navigate(['/login']),\r\n        error: _ => this.onError = true,\r\n      }\r\n    );\r\n  }\r\n\r\n}\r\n",
@@ -7952,10 +7952,10 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "12200de7ea912d14aa4f4966762f54977c740407"
+    "hash": "1632f10434a188be2139add1f9a677e75b1feb0a"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\auth-routing.module.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\auth-routing.module.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\auth-routing.module.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\auth-routing.module.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -8117,22 +8117,22 @@
       }
     },
     "s": {
-      "0": 122,
-      "1": 122,
-      "2": 122,
-      "3": 122,
-      "4": 122,
-      "5": 122,
-      "6": 122
+      "0": 89,
+      "1": 89,
+      "2": 89,
+      "3": 89,
+      "4": 89,
+      "5": 89,
+      "6": 89
     },
     "f": {
-      "0": 122,
-      "1": 122
+      "0": 89,
+      "1": 89
     },
     "b": {
       "0": [
-        122,
-        122
+        89,
+        89
       ]
     },
     "inputSourceMap": {
@@ -8151,17 +8151,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\auth-routing.module.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\auth-routing.module.ts"
       ],
       "sourcesContent": [
         "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { LoginComponent } from './components/login/login.component';\r\nimport { RegisterComponent } from './components/register/register.component';\r\n\r\n\r\nconst routes: Routes = [\r\n  { title: 'Login', path: 'login', component: LoginComponent },\r\n  { title: 'Register', path: 'register', component: RegisterComponent }\r\n];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forChild(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class AuthRoutingModule { }\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "5403c6a2ce10aadbb8733d8a7719d1eb27073a78"
+    "hash": "0bd887fe9b229e0470977a1bf51df6a6370a3d09"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\auth.module.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\auth.module.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\auth.module.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\auth.module.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -8323,22 +8323,22 @@
       }
     },
     "s": {
-      "0": 122,
-      "1": 122,
-      "2": 122,
-      "3": 122,
-      "4": 122,
-      "5": 122,
-      "6": 122
+      "0": 89,
+      "1": 89,
+      "2": 89,
+      "3": 89,
+      "4": 89,
+      "5": 89,
+      "6": 89
     },
     "f": {
-      "0": 122,
-      "1": 122
+      "0": 89,
+      "1": 89
     },
     "b": {
       "0": [
-        122,
-        122
+        89,
+        89
       ]
     },
     "inputSourceMap": {
@@ -8360,17 +8360,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\auth.module.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\auth\\auth.module.ts"
       ],
       "sourcesContent": [
         "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { AuthRoutingModule } from './auth-routing.module';\r\nimport { RegisterComponent } from './components/register/register.component';\r\nimport { LoginComponent } from './components/login/login.component';\r\nimport { MatCardModule } from '@angular/material/card';\r\nimport { MatFormFieldModule } from '@angular/material/form-field';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatInputModule } from '@angular/material/input';\r\nimport { FlexLayoutModule } from '@angular/flex-layout';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { MatIconModule } from '@angular/material/icon';\r\n\r\nconst materialModules = [\r\n  MatButtonModule,\r\n  MatCardModule,\r\n  MatFormFieldModule,\r\n  MatIconModule,\r\n  MatInputModule\r\n]\r\n\r\n@NgModule({\r\n  declarations: [\r\n    RegisterComponent,\r\n    LoginComponent\r\n  ],\r\n  imports: [\r\n    AuthRoutingModule,\r\n    CommonModule,\r\n    FlexLayoutModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    ...materialModules\r\n  ]\r\n})\r\nexport class AuthModule { }\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "0bac166edbb5077605eb1f022a6a78f8db4bff43"
+    "hash": "3415a5bb37a84abbc7d8611e28fabd84ca4c13ab"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\services\\session-api.service.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\services\\session-api.service.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\services\\session-api.service.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\services\\session-api.service.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -8794,37 +8794,37 @@
       }
     },
     "s": {
-      "0": 87,
-      "1": 84,
-      "2": 84,
-      "3": 101,
-      "4": 33,
+      "0": 55,
+      "1": 55,
+      "2": 55,
+      "3": 68,
+      "4": 25,
       "5": 2,
+      "6": 0,
+      "7": 1,
+      "8": 2,
+      "9": 2,
+      "10": 55,
+      "11": 55,
+      "12": 55,
+      "13": 55
+    },
+    "f": {
+      "0": 55,
+      "1": 55,
+      "2": 68,
+      "3": 25,
+      "4": 2,
+      "5": 0,
       "6": 1,
       "7": 2,
       "8": 2,
-      "9": 2,
-      "10": 87,
-      "11": 84,
-      "12": 87,
-      "13": 87
-    },
-    "f": {
-      "0": 87,
-      "1": 84,
-      "2": 101,
-      "3": 33,
-      "4": 2,
-      "5": 1,
-      "6": 2,
-      "7": 2,
-      "8": 2,
-      "9": 84
+      "9": 55
     },
     "b": {
       "0": [
-        84,
-        84
+        55,
+        55
       ]
     },
     "inputSourceMap": {
@@ -8854,17 +8854,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\services\\session-api.service.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\services\\session-api.service.ts"
       ],
       "sourcesContent": [
         "import { HttpClient } from '@angular/common/http';\r\nimport { Injectable } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { Session } from '../interfaces/session.interface';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class SessionApiService {\r\n\r\n  private pathService = 'api/session';\r\n\r\n  constructor(private httpClient: HttpClient) {\r\n  }\r\n\r\n  public all(): Observable<Session[]> {\r\n    return this.httpClient.get<Session[]>(this.pathService);\r\n  }\r\n\r\n  public detail(id: string): Observable<Session> {\r\n    return this.httpClient.get<Session>(`${this.pathService}/${id}`);\r\n  }\r\n\r\n  public delete(id: string): Observable<any> {\r\n    return this.httpClient.delete(`${this.pathService}/${id}`);\r\n  }\r\n\r\n  public create(session: Session): Observable<Session> {\r\n    return this.httpClient.post<Session>(this.pathService, session);\r\n  }\r\n\r\n  public update(id: string, session: Session): Observable<Session> {\r\n    return this.httpClient.put<Session>(`${this.pathService}/${id}`, session);\r\n  }\r\n\r\n  public participate(id: string, userId: string): Observable<void> {\r\n    return this.httpClient.post<void>(`${this.pathService}/${id}/participate/${userId}`, null);\r\n  }\r\n\r\n  public unParticipate(id: string, userId: string): Observable<void> {\r\n    return this.httpClient.delete<void>(`${this.pathService}/${id}/participate/${userId}`);\r\n  }\r\n\r\n}\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "828da064470fffc808977669a0c308ec4eefff00"
+    "hash": "b077498e9a287d675609f815af8ee989c30f86fd"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\services\\teacher.service.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\services\\teacher.service.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\services\\teacher.service.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\services\\teacher.service.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -9118,27 +9118,27 @@
       }
     },
     "s": {
-      "0": 87,
-      "1": 42,
-      "2": 42,
-      "3": 21,
-      "4": 26,
-      "5": 87,
-      "6": 42,
-      "7": 87,
-      "8": 87
+      "0": 55,
+      "1": 33,
+      "2": 33,
+      "3": 15,
+      "4": 22,
+      "5": 55,
+      "6": 33,
+      "7": 55,
+      "8": 55
     },
     "f": {
-      "0": 87,
-      "1": 42,
-      "2": 21,
-      "3": 26,
-      "4": 42
+      "0": 55,
+      "1": 33,
+      "2": 15,
+      "3": 22,
+      "4": 33
     },
     "b": {
       "0": [
-        42,
-        42
+        33,
+        33
       ]
     },
     "inputSourceMap": {
@@ -9159,17 +9159,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\services\\teacher.service.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\services\\teacher.service.ts"
       ],
       "sourcesContent": [
         "import { HttpClient } from '@angular/common/http';\r\nimport { Injectable } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { Teacher } from '../interfaces/teacher.interface';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class TeacherService {\r\n\r\n  private pathService = 'api/teacher';\r\n\r\n  constructor(private httpClient: HttpClient) { }\r\n\r\n  public all(): Observable<Teacher[]> {\r\n    return this.httpClient.get<Teacher[]>(this.pathService);\r\n  }\r\n\r\n  public detail(id: string): Observable<Teacher> {\r\n    return this.httpClient.get<Teacher>(`${this.pathService}/${id}`);\r\n  }\r\n}\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "aa87a3d2efab1ba2b53d688cf6de8a67b41a4074"
+    "hash": "c0a8aa4ad1a78be63bf0a098172759acbd6a667d"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\detail\\detail.component.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\detail\\detail.component.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\detail\\detail.component.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\detail\\detail.component.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -11973,19 +11973,19 @@
       }
     },
     "s": {
-      "0": 80,
-      "1": 7,
-      "2": 7,
-      "3": 7,
+      "0": 50,
+      "1": 4,
+      "2": 4,
+      "3": 4,
       "4": 2,
       "5": 2,
       "6": 2,
-      "7": 7,
-      "8": 7,
-      "9": 7,
-      "10": 7,
-      "11": 7,
-      "12": 7,
+      "7": 4,
+      "8": 4,
+      "9": 4,
+      "10": 4,
+      "11": 4,
+      "12": 4,
       "13": 58,
       "14": 4,
       "15": 4,
@@ -11999,129 +11999,129 @@
       "23": 4,
       "24": 4,
       "25": 4,
-      "26": 162,
-      "27": 15,
-      "28": 15,
-      "29": 15,
+      "26": 152,
+      "27": 14,
+      "28": 14,
+      "29": 14,
       "30": 2,
       "31": 2,
       "32": 2,
-      "33": 15,
-      "34": 15,
-      "35": 15,
-      "36": 15,
-      "37": 15,
-      "38": 15,
-      "39": 216,
-      "40": 15,
-      "41": 15,
-      "42": 15,
-      "43": 15,
-      "44": 216,
-      "45": 201,
-      "46": 201,
-      "47": 201,
-      "48": 201,
-      "49": 201,
-      "50": 152,
-      "51": 19,
-      "52": 19,
-      "53": 19,
-      "54": 19,
-      "55": 19,
-      "56": 19,
-      "57": 19,
-      "58": 152,
-      "59": 133,
-      "60": 133,
-      "61": 133,
-      "62": 296,
-      "63": 22,
-      "64": 22,
-      "65": 22,
+      "33": 14,
+      "34": 14,
+      "35": 14,
+      "36": 14,
+      "37": 14,
+      "38": 14,
+      "39": 206,
+      "40": 14,
+      "41": 14,
+      "42": 14,
+      "43": 14,
+      "44": 206,
+      "45": 192,
+      "46": 192,
+      "47": 192,
+      "48": 192,
+      "49": 192,
+      "50": 148,
+      "51": 18,
+      "52": 18,
+      "53": 18,
+      "54": 18,
+      "55": 18,
+      "56": 18,
+      "57": 18,
+      "58": 148,
+      "59": 130,
+      "60": 130,
+      "61": 130,
+      "62": 256,
+      "63": 18,
+      "64": 18,
+      "65": 18,
       "66": 4,
       "67": 4,
       "68": 4,
-      "69": 22,
-      "70": 22,
-      "71": 22,
-      "72": 22,
-      "73": 22,
-      "74": 22,
-      "75": 22,
-      "76": 22,
-      "77": 22,
-      "78": 22,
-      "79": 22,
-      "80": 22,
-      "81": 22,
-      "82": 22,
-      "83": 22,
-      "84": 22,
-      "85": 22,
-      "86": 22,
-      "87": 22,
-      "88": 22,
-      "89": 22,
-      "90": 22,
-      "91": 22,
-      "92": 22,
-      "93": 22,
-      "94": 22,
-      "95": 22,
-      "96": 22,
-      "97": 22,
-      "98": 22,
-      "99": 22,
-      "100": 22,
-      "101": 22,
-      "102": 22,
-      "103": 22,
-      "104": 22,
-      "105": 22,
-      "106": 22,
-      "107": 22,
-      "108": 22,
-      "109": 22,
-      "110": 22,
-      "111": 22,
-      "112": 22,
-      "113": 22,
-      "114": 22,
-      "115": 296,
-      "116": 274,
-      "117": 274,
-      "118": 274,
-      "119": 274,
-      "120": 274,
-      "121": 274,
-      "122": 274,
-      "123": 274,
-      "124": 274,
-      "125": 274,
-      "126": 274,
-      "127": 274,
-      "128": 274,
-      "129": 274,
-      "130": 274,
-      "131": 274,
-      "132": 274,
-      "133": 274,
-      "134": 274,
-      "135": 87,
-      "136": 22,
-      "137": 22,
-      "138": 22,
-      "139": 22,
-      "140": 22,
-      "141": 22,
-      "142": 22,
-      "143": 22,
-      "144": 22,
-      "145": 22,
-      "146": 22,
-      "147": 22,
-      "148": 22,
+      "69": 18,
+      "70": 18,
+      "71": 18,
+      "72": 18,
+      "73": 18,
+      "74": 18,
+      "75": 18,
+      "76": 18,
+      "77": 18,
+      "78": 18,
+      "79": 18,
+      "80": 18,
+      "81": 18,
+      "82": 18,
+      "83": 18,
+      "84": 18,
+      "85": 18,
+      "86": 18,
+      "87": 18,
+      "88": 18,
+      "89": 18,
+      "90": 18,
+      "91": 18,
+      "92": 18,
+      "93": 18,
+      "94": 18,
+      "95": 18,
+      "96": 18,
+      "97": 18,
+      "98": 18,
+      "99": 18,
+      "100": 18,
+      "101": 18,
+      "102": 18,
+      "103": 18,
+      "104": 18,
+      "105": 18,
+      "106": 18,
+      "107": 18,
+      "108": 18,
+      "109": 18,
+      "110": 18,
+      "111": 18,
+      "112": 18,
+      "113": 18,
+      "114": 18,
+      "115": 256,
+      "116": 238,
+      "117": 238,
+      "118": 238,
+      "119": 238,
+      "120": 238,
+      "121": 238,
+      "122": 238,
+      "123": 238,
+      "124": 238,
+      "125": 238,
+      "126": 238,
+      "127": 238,
+      "128": 238,
+      "129": 238,
+      "130": 238,
+      "131": 238,
+      "132": 238,
+      "133": 238,
+      "134": 238,
+      "135": 55,
+      "136": 18,
+      "137": 18,
+      "138": 18,
+      "139": 18,
+      "140": 18,
+      "141": 18,
+      "142": 18,
+      "143": 18,
+      "144": 18,
+      "145": 18,
+      "146": 18,
+      "147": 18,
+      "148": 18,
       "149": 4,
       "150": 2,
       "151": 2,
@@ -12130,38 +12130,38 @@
       "154": 2,
       "155": 2,
       "156": 2,
-      "157": 26,
-      "158": 26,
-      "159": 26,
-      "160": 21,
-      "161": 26,
-      "162": 23,
-      "163": 87,
-      "164": 22,
-      "165": 87,
-      "166": 406,
-      "167": 22,
-      "168": 22,
-      "169": 22,
-      "170": 406,
-      "171": 384,
-      "172": 384,
-      "173": 87
+      "157": 22,
+      "158": 22,
+      "159": 22,
+      "160": 18,
+      "161": 22,
+      "162": 22,
+      "163": 55,
+      "164": 18,
+      "165": 55,
+      "166": 346,
+      "167": 18,
+      "168": 18,
+      "169": 18,
+      "170": 346,
+      "171": 328,
+      "172": 328,
+      "173": 55
     },
     "f": {
-      "0": 80,
+      "0": 50,
       "1": 2,
       "2": 58,
       "3": 2,
-      "4": 162,
+      "4": 152,
       "5": 2,
-      "6": 216,
-      "7": 152,
-      "8": 296,
+      "6": 206,
+      "7": 148,
+      "8": 256,
       "9": 4,
-      "10": 87,
-      "11": 22,
-      "12": 22,
+      "10": 55,
+      "11": 18,
+      "12": 18,
       "13": 4,
       "14": 2,
       "15": 2,
@@ -12169,61 +12169,61 @@
       "17": 2,
       "18": 2,
       "19": 2,
-      "20": 26,
-      "21": 26,
-      "22": 21,
-      "23": 23,
-      "24": 22,
-      "25": 406
+      "20": 22,
+      "21": 22,
+      "22": 18,
+      "23": 22,
+      "24": 18,
+      "25": 346
     },
     "b": {
       "0": [
-        7,
-        73
+        4,
+        46
       ],
       "1": [
         4,
         54
       ],
       "2": [
-        15,
-        147
+        14,
+        138
       ],
       "3": [
-        15,
-        201
+        14,
+        192
       ],
       "4": [
-        201,
-        15
+        192,
+        14
       ],
       "5": [
-        19,
-        133
+        18,
+        130
       ],
       "6": [
-        133,
-        19
+        130,
+        18
       ],
       "7": [
-        22,
-        274
+        18,
+        238
       ],
       "8": [
-        274,
-        22
+        238,
+        18
       ],
       "9": [
-        22,
-        22
+        18,
+        18
       ],
       "10": [
-        22,
-        384
+        18,
+        328
       ],
       "11": [
-        384,
-        22
+        328,
+        18
       ]
     },
     "inputSourceMap": {
@@ -12279,8 +12279,8 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\detail\\detail.component.html",
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\detail\\detail.component.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\detail\\detail.component.html",
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\detail\\detail.component.ts"
       ],
       "sourcesContent": [
         "<div class=\"m3\">\r\n  <mat-card *ngIf=\"session\">\r\n    <mat-card-title>\r\n      <div fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n        <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\r\n          <button mat-icon-button (click)=\"back()\">\r\n            <mat-icon>arrow_back</mat-icon>\r\n          </button>\r\n          <h1>{{session.name | titlecase}}</h1>\r\n        </div>\r\n        <div>\r\n          <button *ngIf=\"isAdmin\" mat-raised-button color=\"warn\" (click)=\"delete()\">\r\n            <mat-icon>delete</mat-icon>\r\n            <span class=\"ml1\">Delete</span>\r\n          </button>\r\n          <div *ngIf=\"!isAdmin\">\r\n            <button *ngIf=\"!isParticipate\" mat-raised-button color=\"primary\" (click)=\"participate()\">\r\n              <mat-icon>person_add</mat-icon>\r\n              <span class=\"ml1\">Participate</span>\r\n            </button>\r\n            <button *ngIf=\"isParticipate\" mat-raised-button color=\"warn\" (click)=\"unParticipate()\">\r\n              <mat-icon>person_remove</mat-icon>\r\n              <span class=\"ml1\">Do not participate</span>\r\n            </button>\r\n\r\n          </div>\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </mat-card-title>\r\n    <mat-card-subtitle *ngIf=\"teacher\">\r\n      <div fxLayoutAlign=\"start center\" class=\"ml3\">\r\n        <mat-icon>\r\n          people\r\n        </mat-icon>\r\n        <span class=\"ml1\">{{ teacher.firstName }} {{ teacher.lastName | uppercase }}</span>\r\n      </div>\r\n    </mat-card-subtitle>\r\n    <div mat-card-image fxLayoutAlign=\"center center\">\r\n      <img class=\"picture\" src=\"assets/sessions.png\" alt=\"Yoga session\">\r\n    </div>\r\n    <mat-card-content>\r\n      <div class=\"my2\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n        <div fxLayoutAlign=\"start center\">\r\n          <mat-icon>\r\n            group\r\n          </mat-icon>\r\n          <span class=\"ml1\">{{ session.users.length }} attendees</span>\r\n        </div>\r\n        <div fxLayoutAlign=\"start center\">\r\n          <mat-icon>\r\n            calendar_month\r\n          </mat-icon>\r\n          <span class=\"ml1\">{{ session.date | date: 'longDate'}}</span>\r\n        </div>\r\n      </div>\r\n      <div class=\"description\">\r\n        <p>Description:</p>\r\n        {{ session.description }}\r\n        <br>\r\n      </div>\r\n      <div class=\"date\" class=\"my2\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n        <div class=\"created\"><i>Create at: </i> {{ session.createdAt| date: 'longDate'}}</div>\r\n        <div class=\"updated\"><i>Last update: </i> {{ session.updatedAt| date: 'longDate'}}</div>\r\n      </div>\r\n    </mat-card-content>\r\n  </mat-card>\r\n</div>\r\n",
@@ -12288,10 +12288,10 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "35b6c9eebd73f8d16850dd3884a3f9d222d0e390"
+    "hash": "839c1d03fa0b69886ead18eba1b9b4efd9f3e22d"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\form\\form.component.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\form\\form.component.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\form\\form.component.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\form\\form.component.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -14309,194 +14309,194 @@
       }
     },
     "s": {
-      "0": 467,
-      "1": 14,
-      "2": 14,
-      "3": 14,
-      "4": 226,
-      "5": 7,
-      "6": 7,
-      "7": 7,
-      "8": 1034,
-      "9": 38,
-      "10": 38,
-      "11": 38,
-      "12": 1034,
-      "13": 996,
-      "14": 996,
-      "15": 996,
-      "16": 996,
-      "17": 658,
-      "18": 21,
-      "19": 21,
-      "20": 21,
-      "21": 3,
-      "22": 3,
-      "23": 3,
-      "24": 21,
-      "25": 21,
-      "26": 21,
-      "27": 21,
-      "28": 21,
-      "29": 21,
-      "30": 21,
-      "31": 21,
-      "32": 21,
-      "33": 21,
-      "34": 21,
-      "35": 21,
-      "36": 21,
-      "37": 21,
-      "38": 21,
-      "39": 21,
-      "40": 21,
-      "41": 21,
-      "42": 21,
-      "43": 21,
-      "44": 21,
-      "45": 21,
-      "46": 21,
-      "47": 21,
-      "48": 21,
-      "49": 658,
-      "50": 637,
-      "51": 637,
-      "52": 637,
-      "53": 637,
-      "54": 637,
-      "55": 637,
-      "56": 637,
-      "57": 87,
-      "58": 21,
-      "59": 21,
-      "60": 21,
-      "61": 21,
-      "62": 21,
-      "63": 21,
-      "64": 21,
-      "65": 21,
-      "66": 21,
-      "67": 21,
+      "0": 323,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 53,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 536,
+      "9": 30,
+      "10": 30,
+      "11": 30,
+      "12": 536,
+      "13": 506,
+      "14": 506,
+      "15": 506,
+      "16": 506,
+      "17": 361,
+      "18": 15,
+      "19": 15,
+      "20": 15,
+      "21": 1,
+      "22": 1,
+      "23": 1,
+      "24": 15,
+      "25": 15,
+      "26": 15,
+      "27": 15,
+      "28": 15,
+      "29": 15,
+      "30": 15,
+      "31": 15,
+      "32": 15,
+      "33": 15,
+      "34": 15,
+      "35": 15,
+      "36": 15,
+      "37": 15,
+      "38": 15,
+      "39": 15,
+      "40": 15,
+      "41": 15,
+      "42": 15,
+      "43": 15,
+      "44": 15,
+      "45": 15,
+      "46": 15,
+      "47": 15,
+      "48": 15,
+      "49": 361,
+      "50": 346,
+      "51": 346,
+      "52": 346,
+      "53": 346,
+      "54": 346,
+      "55": 346,
+      "56": 346,
+      "57": 55,
+      "58": 15,
+      "59": 15,
+      "60": 15,
+      "61": 15,
+      "62": 15,
+      "63": 15,
+      "64": 15,
+      "65": 15,
+      "66": 15,
+      "67": 15,
       "68": 0,
-      "69": 21,
-      "70": 21,
-      "71": 7,
-      "72": 7,
-      "73": 7,
-      "74": 7,
-      "75": 14,
-      "76": 3,
-      "77": 3,
-      "78": 1,
-      "79": 1,
-      "80": 2,
-      "81": 2,
-      "82": 21,
-      "83": 3,
-      "84": 3,
-      "85": 87,
-      "86": 21,
-      "87": 87,
-      "88": 693,
-      "89": 21,
-      "90": 21,
-      "91": 21,
-      "92": 21,
-      "93": 21,
-      "94": 21,
-      "95": 21,
-      "96": 21,
-      "97": 693,
-      "98": 672,
-      "99": 672,
-      "100": 672,
-      "101": 672,
-      "102": 672,
-      "103": 672,
-      "104": 87
+      "69": 15,
+      "70": 15,
+      "71": 3,
+      "72": 3,
+      "73": 3,
+      "74": 3,
+      "75": 12,
+      "76": 1,
+      "77": 1,
+      "78": 0,
+      "79": 0,
+      "80": 1,
+      "81": 1,
+      "82": 15,
+      "83": 1,
+      "84": 1,
+      "85": 55,
+      "86": 15,
+      "87": 55,
+      "88": 376,
+      "89": 15,
+      "90": 15,
+      "91": 15,
+      "92": 15,
+      "93": 15,
+      "94": 15,
+      "95": 15,
+      "96": 15,
+      "97": 376,
+      "98": 361,
+      "99": 361,
+      "100": 361,
+      "101": 361,
+      "102": 361,
+      "103": 361,
+      "104": 55
     },
     "f": {
-      "0": 467,
-      "1": 226,
-      "2": 1034,
-      "3": 658,
-      "4": 3,
-      "5": 87,
-      "6": 21,
-      "7": 21,
-      "8": 7,
-      "9": 3,
-      "10": 1,
-      "11": 2,
-      "12": 21,
-      "13": 3,
-      "14": 21,
-      "15": 693
+      "0": 323,
+      "1": 53,
+      "2": 536,
+      "3": 361,
+      "4": 1,
+      "5": 55,
+      "6": 15,
+      "7": 15,
+      "8": 3,
+      "9": 1,
+      "10": 0,
+      "11": 1,
+      "12": 15,
+      "13": 1,
+      "14": 15,
+      "15": 376
     },
     "b": {
       "0": [
-        14,
-        453
+        12,
+        311
       ],
       "1": [
-        7,
-        219
+        3,
+        50
       ],
       "2": [
-        38,
-        996
+        30,
+        506
       ],
       "3": [
-        996,
-        38
+        506,
+        30
       ],
       "4": [
-        21,
-        637
+        15,
+        346
       ],
       "5": [
-        637,
-        21
+        346,
+        15
       ],
       "6": [
         0,
-        21
+        15
       ],
       "7": [
-        7,
-        14
+        3,
+        12
       ],
       "8": [
-        1,
-        2
+        0,
+        1
       ],
       "9": [
-        7,
-        14
+        3,
+        12
       ],
       "10": [
-        7,
-        14
+        3,
+        12
       ],
       "11": [
-        7,
-        14
+        3,
+        12
       ],
       "12": [
-        7,
-        14
+        3,
+        12
       ],
       "13": [
-        21,
-        21
+        15,
+        15
       ],
       "14": [
-        21,
-        672
+        15,
+        361
       ],
       "15": [
-        672,
-        21
+        361,
+        15
       ]
     },
     "inputSourceMap": {
@@ -14558,8 +14558,8 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\form\\form.component.ts",
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\form\\form.component.html"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\form\\form.component.ts",
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\form\\form.component.html"
       ],
       "sourcesContent": [
         "import { Component, OnInit } from '@angular/core';\r\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\nimport { MatSnackBar } from '@angular/material/snack-bar';\r\nimport { ActivatedRoute, Router } from '@angular/router';\r\nimport { SessionService } from '../../../../services/session.service';\r\nimport { TeacherService } from '../../../../services/teacher.service';\r\nimport { Session } from '../../interfaces/session.interface';\r\nimport { SessionApiService } from '../../services/session-api.service';\r\n\r\n@Component({\r\n  selector: 'app-form',\r\n  templateUrl: './form.component.html',\r\n  styleUrls: ['./form.component.scss']\r\n})\r\nexport class FormComponent implements OnInit {\r\n\r\n  public onUpdate: boolean = false;\r\n  public sessionForm: FormGroup | undefined;\r\n  public teachers$ = this.teacherService.all();\r\n  private id: string | undefined;\r\n\r\n  constructor(\r\n    private route: ActivatedRoute,\r\n    private fb: FormBuilder,\r\n    private matSnackBar: MatSnackBar,\r\n    private sessionApiService: SessionApiService,\r\n    private sessionService: SessionService,\r\n    private teacherService: TeacherService,\r\n    private router: Router\r\n  ) {\r\n  }\r\n\r\n  public ngOnInit(): void {\r\n    if (!this.sessionService.sessionInformation!.admin) {\r\n      this.router.navigate(['/sessions']);\r\n    }\r\n    const url = this.router.url;\r\n    if (url.includes('update')) {\r\n      this.onUpdate = true;\r\n      this.id = this.route.snapshot.paramMap.get('id')!;\r\n      this.sessionApiService\r\n        .detail(this.id)\r\n        .subscribe((session: Session) => this.initForm(session));\r\n    } else {\r\n      this.initForm();\r\n    }\r\n  }\r\n\r\n  public submit(): void {\r\n    const session = this.sessionForm?.value as Session;\r\n\r\n    if (!this.onUpdate) {\r\n      this.sessionApiService\r\n        .create(session)\r\n        .subscribe((_: Session) => this.exitPage('Session created !'));\r\n    } else {\r\n      this.sessionApiService\r\n        .update(this.id!, session)\r\n        .subscribe((_: Session) => this.exitPage('Session updated !'));\r\n    }\r\n  }\r\n\r\n  private initForm(session?: Session): void {\r\n    this.sessionForm = this.fb.group({\r\n      name: [\r\n        session ? session.name : '',\r\n        [Validators.required]\r\n      ],\r\n      date: [\r\n        session ? new Date(session.date).toISOString().split('T')[0] : '',\r\n        [Validators.required]\r\n      ],\r\n      teacher_id: [\r\n        session ? session.teacher_id : '',\r\n        [Validators.required]\r\n      ],\r\n      description: [\r\n        session ? session.description : '',\r\n        [\r\n          Validators.required,\r\n          Validators.max(2000)\r\n        ]\r\n      ],\r\n    });\r\n  }\r\n\r\n  private exitPage(message: string): void {\r\n    this.matSnackBar.open(message, 'Close', { duration: 3000 });\r\n    this.router.navigate(['sessions']);\r\n  }\r\n}\r\n",
@@ -14567,10 +14567,10 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "bbb2eb3213d481af9b2949badf9ae93c8020c92e"
+    "hash": "a59fbfc422f46c3a598a978be9a421942c53fea2"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\list\\list.component.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\list\\list.component.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\list\\list.component.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\list\\list.component.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -15906,131 +15906,131 @@
       }
     },
     "s": {
-      "0": 528,
-      "1": 60,
-      "2": 60,
-      "3": 60,
-      "4": 60,
-      "5": 60,
-      "6": 60,
-      "7": 87,
-      "8": 42,
-      "9": 126,
-      "10": 42,
-      "11": 42,
-      "12": 42,
-      "13": 42,
-      "14": 42,
-      "15": 42,
-      "16": 126,
-      "17": 84,
-      "18": 84,
-      "19": 87,
-      "20": 85,
-      "21": 255,
-      "22": 85,
-      "23": 85,
-      "24": 85,
-      "25": 85,
-      "26": 85,
-      "27": 85,
-      "28": 85,
-      "29": 85,
-      "30": 85,
-      "31": 85,
-      "32": 85,
-      "33": 85,
-      "34": 85,
-      "35": 85,
-      "36": 85,
-      "37": 85,
-      "38": 85,
-      "39": 85,
-      "40": 85,
-      "41": 85,
-      "42": 85,
-      "43": 255,
-      "44": 170,
-      "45": 170,
-      "46": 170,
-      "47": 170,
-      "48": 170,
-      "49": 170,
-      "50": 170,
-      "51": 170,
-      "52": 170,
-      "53": 170,
-      "54": 170,
-      "55": 170,
-      "56": 87,
-      "57": 101,
-      "58": 101,
-      "59": 101,
-      "60": 990,
-      "61": 87,
-      "62": 101,
-      "63": 87,
-      "64": 921,
-      "65": 101,
-      "66": 101,
-      "67": 101,
-      "68": 101,
-      "69": 101,
-      "70": 101,
-      "71": 101,
-      "72": 101,
-      "73": 101,
-      "74": 921,
-      "75": 820,
-      "76": 820,
-      "77": 820,
-      "78": 820,
-      "79": 87
+      "0": 333,
+      "1": 38,
+      "2": 38,
+      "3": 38,
+      "4": 38,
+      "5": 38,
+      "6": 38,
+      "7": 55,
+      "8": 21,
+      "9": 63,
+      "10": 21,
+      "11": 21,
+      "12": 21,
+      "13": 21,
+      "14": 21,
+      "15": 21,
+      "16": 63,
+      "17": 42,
+      "18": 42,
+      "19": 55,
+      "20": 53,
+      "21": 159,
+      "22": 53,
+      "23": 53,
+      "24": 53,
+      "25": 53,
+      "26": 53,
+      "27": 53,
+      "28": 53,
+      "29": 53,
+      "30": 53,
+      "31": 53,
+      "32": 53,
+      "33": 53,
+      "34": 53,
+      "35": 53,
+      "36": 53,
+      "37": 53,
+      "38": 53,
+      "39": 53,
+      "40": 53,
+      "41": 53,
+      "42": 53,
+      "43": 159,
+      "44": 106,
+      "45": 106,
+      "46": 106,
+      "47": 106,
+      "48": 106,
+      "49": 106,
+      "50": 106,
+      "51": 106,
+      "52": 106,
+      "53": 106,
+      "54": 106,
+      "55": 106,
+      "56": 55,
+      "57": 68,
+      "58": 68,
+      "59": 68,
+      "60": 664,
+      "61": 55,
+      "62": 68,
+      "63": 55,
+      "64": 626,
+      "65": 68,
+      "66": 68,
+      "67": 68,
+      "68": 68,
+      "69": 68,
+      "70": 68,
+      "71": 68,
+      "72": 68,
+      "73": 68,
+      "74": 626,
+      "75": 558,
+      "76": 558,
+      "77": 558,
+      "78": 558,
+      "79": 55
     },
     "f": {
-      "0": 528,
-      "1": 42,
-      "2": 126,
-      "3": 85,
-      "4": 255,
-      "5": 87,
-      "6": 101,
-      "7": 990,
-      "8": 101,
-      "9": 921
+      "0": 333,
+      "1": 21,
+      "2": 63,
+      "3": 53,
+      "4": 159,
+      "5": 55,
+      "6": 68,
+      "7": 664,
+      "8": 68,
+      "9": 626
     },
     "b": {
       "0": [
-        60,
-        468
+        38,
+        295
       ],
       "1": [
-        42,
-        84
-      ],
-      "2": [
-        84,
+        21,
         42
       ],
+      "2": [
+        42,
+        21
+      ],
       "3": [
-        85,
-        170
+        53,
+        106
       ],
       "4": [
-        170,
-        85
+        106,
+        53
       ],
       "5": [
-        101,
-        101
+        68,
+        68
       ],
       "6": [
-        101,
-        820
+        68,
+        558
       ],
       "7": [
-        820,
-        101
+        558,
+        68
       ]
     },
     "inputSourceMap": {
@@ -16053,8 +16053,8 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\list\\list.component.html",
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\list\\list.component.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\list\\list.component.html",
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\components\\list\\list.component.ts"
       ],
       "sourcesContent": [
         "<div class=\"list\">\r\n  <mat-card>\r\n    <mat-card-header fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n      <mat-card-title class=\"m0\">Rentals available</mat-card-title>\r\n      <button *ngIf=\"user!.admin\" mat-raised-button color=\"primary\" routerLink=\"create\">\r\n        <mat-icon>add</mat-icon>\r\n        <span class=\"ml1\">Create</span>\r\n      </button>\r\n    </mat-card-header>\r\n    <div class=\"items mt2\" fxLayout=\"row wrap\" fxLayout.lt-md=\"column\">\r\n      <mat-card class=\"item\" *ngFor=\"let session of (sessions$ | async)\" fxFlex>\r\n        <mat-card-header>\r\n          <mat-card-title>{{ session.name }}</mat-card-title>\r\n          <mat-card-subtitle>\r\n            Session on {{ session.date | date: 'longDate'}}\r\n          </mat-card-subtitle>\r\n        </mat-card-header>\r\n        <div mat-card-image fxLayoutAlign=\"center center\">\r\n          <img class=\"picture\" src=\"assets/sessions.png\" alt=\"Yoga session\">\r\n        </div>\r\n        <mat-card-content>\r\n          <p>\r\n            {{ session.description }}\r\n          </p>\r\n        </mat-card-content>\r\n        <mat-card-actions>\r\n          <button mat-raised-button color=\"primary\" [routerLink]=\"['detail',session.id]\">\r\n            <mat-icon>search</mat-icon>\r\n            <span class=\"ml1\">Detail</span>\r\n          </button>\r\n          <button *ngIf=\"user!.admin\" mat-raised-button color=\"primary\"\r\n                  [routerLink]=\"['update',session.id]\">\r\n            <mat-icon>edit</mat-icon>\r\n            <span class=\"ml1\">Edit</span>\r\n          </button>\r\n        </mat-card-actions>\r\n      </mat-card>\r\n    </div>\r\n  </mat-card>\r\n</div>\r\n",
@@ -16062,10 +16062,10 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "84f468a92665a625e6889f2a5b41b82fe1d286b8"
+    "hash": "53906d68fc866c31ef4943be52c5745e69cf60b9"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\sessions-routing.module.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\sessions-routing.module.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\sessions-routing.module.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\sessions-routing.module.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -16227,22 +16227,22 @@
       }
     },
     "s": {
-      "0": 87,
-      "1": 87,
-      "2": 87,
-      "3": 87,
-      "4": 87,
-      "5": 87,
-      "6": 87
+      "0": 55,
+      "1": 55,
+      "2": 55,
+      "3": 55,
+      "4": 55,
+      "5": 55,
+      "6": 55
     },
     "f": {
-      "0": 87,
-      "1": 87
+      "0": 55,
+      "1": 55
     },
     "b": {
       "0": [
-        87,
-        87
+        55,
+        55
       ]
     },
     "inputSourceMap": {
@@ -16262,17 +16262,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\sessions-routing.module.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\sessions-routing.module.ts"
       ],
       "sourcesContent": [
         "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { DetailComponent } from './components/detail/detail.component';\r\nimport { FormComponent } from './components/form/form.component';\r\nimport { ListComponent } from './components/list/list.component';\r\n\r\nconst routes: Routes = [\r\n  { path: '', title: 'Sessions', component: ListComponent },\r\n  { path: 'detail/:id', title: 'Sessions - detail', component: DetailComponent },\r\n  { path: 'create', title: 'Sessions - create', component: FormComponent },\r\n  { path: 'update/:id', title: 'Sessions - update', component: FormComponent }\r\n];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forChild(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class SessionsRoutingModule {\r\n}\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "40687966d2026a11b2368c8250c213e0251a62e7"
+    "hash": "f6c4630d0ae38bec3fd3e00b9fcf3af2d65bca54"
   },
-  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\sessions.module.ts": {
-    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\sessions.module.ts",
+  "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\sessions.module.ts": {
+    "path": "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\sessions.module.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -16444,23 +16444,23 @@
       }
     },
     "s": {
-      "0": 87,
-      "1": 87,
-      "2": 87,
-      "3": 87,
-      "4": 87,
-      "5": 87,
-      "6": 87,
-      "7": 87
+      "0": 55,
+      "1": 55,
+      "2": 55,
+      "3": 55,
+      "4": 55,
+      "5": 55,
+      "6": 55,
+      "7": 55
     },
     "f": {
-      "0": 87,
-      "1": 87
+      "0": 55,
+      "1": 55
     },
     "b": {
       "0": [
-        87,
-        87
+        55,
+        55
       ]
     },
     "inputSourceMap": {
@@ -16485,13 +16485,13 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\sessions.module.ts"
+        "C:\\Users\\axel2\\OneDrive\\Documents\\Openclassrooms\\Projet5Clone\\Projet-5-OpenClassroom\\front\\src\\app\\features\\sessions\\sessions.module.ts"
       ],
       "sourcesContent": [
         "import { NgModule } from '@angular/core';\r\nimport { CommonModule, registerLocaleData } from '@angular/common';\r\nimport { FlexLayoutModule } from '@angular/flex-layout';\r\nimport { ReactiveFormsModule } from '@angular/forms';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatCardModule } from '@angular/material/card';\r\nimport { MatFormFieldModule } from '@angular/material/form-field';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatInputModule } from '@angular/material/input';\r\nimport { MatSelectModule } from '@angular/material/select';\r\nimport { MatSnackBarModule } from '@angular/material/snack-bar';\r\nimport { ListComponent } from './components/list/list.component';\r\nimport { FormComponent } from './components/form/form.component';\r\nimport { DetailComponent } from './components/detail/detail.component';\r\nimport { SessionsRoutingModule } from './sessions-routing.module';\r\nimport localeFr from '@angular/common/locales/fr';\r\nregisterLocaleData(localeFr);\r\n\r\nconst materialModules = [\r\n  MatButtonModule,\r\n  MatCardModule,\r\n  MatFormFieldModule,\r\n  MatIconModule,\r\n  MatInputModule,\r\n  MatSnackBarModule,\r\n  MatSelectModule\r\n];\r\n\r\n@NgModule({\r\n  declarations: [\r\n    ListComponent,\r\n    FormComponent,\r\n    DetailComponent\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    FlexLayoutModule,\r\n    ReactiveFormsModule,\r\n    SessionsRoutingModule,\r\n    ...materialModules\r\n  ]\r\n})\r\nexport class SessionsModule { }\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "bcf4d693af3cf74236265388ccaee0151df3a10a"
+    "hash": "51663c1710fe66fbd499c43a00fa11132ae44674"
   }
 }
