@@ -43,4 +43,4 @@ Thumbs.db
 
 **/.DS_Store
 
-.nyc_output
+.nyc_output/

@@ -44,3 +44,7 @@ VALUES ('Margot', 'DELAHAYE'),
 INSERT INTO USERS (first_name, last_name, admin, email, password)
 VALUES ('Admin', 'Admin', true, 'yoga@studio.com', '$2a$10$.Hsa/ZjUVaHqi0tp9xieMeewrnZxrZ5pQRzddUXE/WjDu2ZThe6Iq'); 
 
+INSERT INTO `SESSIONS` (`name`, `description`, `date`, `teacher_id`)
+VALUES 
+('Yoga session 1', 'Yoga description 1', '2024-07-28 10:00:00', 1),
+('Yoga session 2', 'Yoga description 2', '2024-08-01 15:00:00', 2);
