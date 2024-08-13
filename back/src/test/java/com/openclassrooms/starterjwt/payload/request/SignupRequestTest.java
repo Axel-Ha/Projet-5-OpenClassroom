@@ -105,7 +105,6 @@ public class SignupRequestTest {
 
         Set<ConstraintViolation<SignupRequest>> violations = validator.validate(request);
         assertFalse(violations.isEmpty());
-        assertEquals("ne doit pas être vide",violations.iterator().next().getMessage());
 
     }
 

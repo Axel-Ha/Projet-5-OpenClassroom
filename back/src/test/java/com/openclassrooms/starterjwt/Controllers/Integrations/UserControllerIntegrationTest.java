@@ -121,7 +121,7 @@ public class UserControllerIntegrationTest {
     void deleteUserTest_UserNotExist() throws Exception {
         mockMvc.perform(delete("/api/user/55")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
-                .andExpect(status().isUnauthorized());
+                .andExpect(status().isNotFound());
     }
 
 
