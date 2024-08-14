@@ -1,6 +1,6 @@
- export default function registerSpec(){
+ export default function login(){
 
-  describe('Register spec', () => {
+  describe('login spec', () => {
     beforeEach(() => {
       cy.visit('/login')
     });

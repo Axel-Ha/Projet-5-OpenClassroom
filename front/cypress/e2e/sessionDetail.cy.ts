@@ -1,4 +1,4 @@
-export default function meSpec() {
+export default function sessionDetail() {
   describe('Session Detail spec', () => {
     const mockSession1 = {
       id: 1,

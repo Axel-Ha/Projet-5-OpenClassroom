@@ -1,4 +1,4 @@
-export default function meSpec() {
+export default function register() {
   describe('Register spec', () => {
     beforeEach(() => {
       cy.visit('/register');

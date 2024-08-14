@@ -1,4 +1,4 @@
-export default function meSpec() {
+export default function sessionForm() {
   describe('Session Form', () => {
     const mockUserAdmin = {
       id: 1,
