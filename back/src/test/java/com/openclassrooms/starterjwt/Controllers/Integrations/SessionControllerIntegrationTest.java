@@ -33,24 +33,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class SessionControllerIntegrationTest {
+class SessionControllerIntegrationTest {
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Autowired
-    SessionService sessionService;
+    private SessionService sessionService;
 
     @Autowired
-    SessionRepository sessionRepository;
+    private SessionRepository sessionRepository;
 
     @Autowired
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
 
     @Autowired
-    JwtUtils jwtUtils;
+    private JwtUtils jwtUtils;
 
     @Autowired
-    ObjectMapper objectMapper;
+    private ObjectMapper objectMapper;
 
     private String token;
 

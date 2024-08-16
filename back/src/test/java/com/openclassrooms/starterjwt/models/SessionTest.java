@@ -1,19 +1,16 @@
 package com.openclassrooms.starterjwt.models;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
-public class SessionTest {
+class SessionTest {
 
     @Test
     void sessionGettersSettersAndBuilderTest() {

@@ -13,7 +13,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
-public class SignupRequestTest {
+class SignupRequestTest {
     private static Validator validator;
 
     @InjectMocks

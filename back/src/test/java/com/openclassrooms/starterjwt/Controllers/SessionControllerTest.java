@@ -19,16 +19,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
-public class SessionControllerTest {
+class SessionControllerTest {
 
     @InjectMocks
-    SessionController sessionController;
+    private SessionController sessionController;
 
     @Mock
-    SessionMapper sessionMapper;
+    private SessionMapper sessionMapper;
 
     @Mock
-    SessionService sessionService;
+    private SessionService sessionService;
 
     @Test
     void findSessionByIdTest_valid(){

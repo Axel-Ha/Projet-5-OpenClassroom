@@ -18,18 +18,18 @@ import java.io.IOException;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
-public class AuthEntryPointJwtTest {
+class AuthEntryPointJwtTest {
     @InjectMocks
-    AuthEntryPointJwt authEntryPointJwt;
+    private AuthEntryPointJwt authEntryPointJwt;
 
     @Mock
-    HttpServletRequest httpServletRequest;
+    private HttpServletRequest httpServletRequest;
 
     @Mock
-    HttpServletResponse httpServletResponse;
+    private HttpServletResponse httpServletResponse;
 
     @Mock
-    AuthenticationException authenticationException;
+    private AuthenticationException authenticationException;
 
     @Mock
     private ServletOutputStream outputStream;

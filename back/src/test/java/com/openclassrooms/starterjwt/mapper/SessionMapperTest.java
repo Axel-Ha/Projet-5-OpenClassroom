@@ -22,15 +22,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
-public class SessionMapperTest {
+class SessionMapperTest {
     @InjectMocks
-    SessionMapper sessionMapper = Mappers.getMapper(SessionMapper.class);
+    private SessionMapper sessionMapper = Mappers.getMapper(SessionMapper.class);
 
     @Mock
-    TeacherService teacherService;
-
-    @Mock
-    UserService userService;
+    private TeacherService teacherService;
 
     @Test
     void toDtoTest_SessionNotNull(){

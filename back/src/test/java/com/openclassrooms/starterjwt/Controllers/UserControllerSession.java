@@ -26,18 +26,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
-public class UserControllerSession {
+class UserControllerSession {
     @InjectMocks
-    UserController userController;
+    private UserController userController;
 
     @Mock
-    UserService userService;
+    private UserService userService;
 
     @Mock
-    UserMapper userMapper;
-
-    @Mock
-    private UserDetailsService userDetailsService;
+    private UserMapper userMapper;
 
     @Mock
     private UserDetails userDetails;

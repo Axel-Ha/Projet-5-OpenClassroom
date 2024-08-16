@@ -10,7 +10,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
-public class UserTest {
+class UserTest {
 
     @Test
     void userGettersSettersAndBuilderTest() {

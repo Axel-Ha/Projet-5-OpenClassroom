@@ -22,15 +22,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-public class TeacherControllerTest {
+class TeacherControllerTest {
     @InjectMocks
-    TeacherController teacherController;
+    private TeacherController teacherController;
 
     @Mock
-    TeacherService teacherService;
+    private TeacherService teacherService;
 
     @Mock
-    TeacherMapper teacherMapper;
+    private TeacherMapper teacherMapper;
 
 
     @Test

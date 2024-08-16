@@ -20,19 +20,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
-public class JwtUtilsTest {
+class JwtUtilsTest {
 
     @InjectMocks
-    JwtUtils jwtUtils;
+    private JwtUtils jwtUtils;
 
     @Mock
-    UserDetailsImpl userDetails;
+    private UserDetailsImpl userDetails;
 
     @Mock
-    Authentication authentication;
-
-    @Mock
-    Logger logger;
+    private Authentication authentication;
 
     private String jwtSecret = "JwtSecret";
     private int jwtExpiration = 3600000;

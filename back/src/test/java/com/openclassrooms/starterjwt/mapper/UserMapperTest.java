@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class UserMapperTest {
+class UserMapperTest {
     @InjectMocks
-    UserMapper userMapper = Mappers.getMapper(UserMapper.class);;
+    private UserMapper userMapper = Mappers.getMapper(UserMapper.class);;
 
     @Test
     void toDtoTest_ValidUser(){

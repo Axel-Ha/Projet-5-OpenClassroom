@@ -24,28 +24,28 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
-public class AuthTokenFilterTest {
+class AuthTokenFilterTest {
 
     @InjectMocks
-    AuthTokenFilter authTokenFilter;
+    private AuthTokenFilter authTokenFilter;
 
     @Mock
-    HttpServletRequest httpServletRequest;
+    private HttpServletRequest httpServletRequest;
 
     @Mock
-    HttpServletResponse httpServletResponse;
+    private HttpServletResponse httpServletResponse;
 
     @Mock
-    FilterChain filterChain;
+    private FilterChain filterChain;
 
     @Mock
-    JwtUtils jwtUtils;
+    private JwtUtils jwtUtils;
 
     @Mock
-    UserDetailsServiceImpl userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Mock
-    UserDetails userDetails;
+    private UserDetails userDetails;
 
     @Test
     void doFilterInternalTest_ValidToken() throws ServletException, IOException {

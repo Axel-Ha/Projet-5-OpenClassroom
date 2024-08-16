@@ -30,21 +30,21 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
-public class AuthControllerTest {
+class AuthControllerTest {
     @InjectMocks
-    AuthController authController;
+    private AuthController authController;
 
     @Mock
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
 
     @Mock
-    JwtUtils jwtUtils;
+    private JwtUtils jwtUtils;
 
     @Mock
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Mock
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
 
     @Test

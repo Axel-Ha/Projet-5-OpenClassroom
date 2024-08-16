@@ -16,7 +16,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 @ExtendWith(MockitoExtension.class)
-public class UserDetailsImplTest {
+class UserDetailsImplTest {
 
     @InjectMocks
     private UserDetailsImpl userDetails;

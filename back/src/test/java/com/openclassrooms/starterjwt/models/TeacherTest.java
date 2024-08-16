@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @ExtendWith(SpringExtension.class)
-public class TeacherTest {
+class TeacherTest {
 
     @Test
     void teacherGettersSettersAndBuilderTest() {

@@ -13,10 +13,10 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
-public class TeacherMapperTest {
+class TeacherMapperTest {
 
     @InjectMocks
-    TeacherMapper teacherMapper = Mappers.getMapper(TeacherMapper.class);;
+    private TeacherMapper teacherMapper = Mappers.getMapper(TeacherMapper.class);;
 
     @Test
     void toDtoTest_ValidTeacher(){

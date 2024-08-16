@@ -19,13 +19,13 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(SpringExtension.class)
-public class UserDetailsServiceImplTest {
+class UserDetailsServiceImplTest {
 
     @InjectMocks
-    UserDetailsServiceImpl userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Mock
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Test
     void loadUserByUsernameTest_UserExist(){
