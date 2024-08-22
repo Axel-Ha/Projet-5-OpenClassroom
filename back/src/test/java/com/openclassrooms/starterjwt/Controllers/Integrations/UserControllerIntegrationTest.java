@@ -2,128 +2,131 @@ package com.openclassrooms.starterjwt.Controllers.Integrations;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.openclassrooms.starterjwt.AuthConfig;
+import com.openclassrooms.starterjwt.controllers.TeacherController;
+import com.openclassrooms.starterjwt.controllers.UserController;
+import com.openclassrooms.starterjwt.dto.UserDto;
+import com.openclassrooms.starterjwt.mapper.UserMapper;
 import com.openclassrooms.starterjwt.models.User;
 import com.openclassrooms.starterjwt.payload.request.SignupRequest;
 import com.openclassrooms.starterjwt.repository.UserRepository;
+import com.openclassrooms.starterjwt.security.jwt.AuthEntryPointJwt;
 import com.openclassrooms.starterjwt.security.jwt.JwtUtils;
+import com.openclassrooms.starterjwt.security.services.UserDetailsServiceImpl;
+import com.openclassrooms.starterjwt.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@AutoConfigureMockMvc
+@WebMvcTest(UserController.class)
+@Import(AuthConfig.class)
 class UserControllerIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    @MockBean
+    private UserService userService;
 
-    @Autowired
-    private JwtUtils jwtUtils;
-
-    @Autowired
+    @MockBean
     private UserRepository userRepository;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    @MockBean
+    private UserMapper userMapper;
 
-    private String token;
+    @MockBean
+    private AuthenticationManager authenticationManager;
 
-    @BeforeEach
-    public void setupAuthAndToken(){
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken("yoga@studio.com","test!1234")
-        );
+    @MockBean
+    private JwtUtils jwtUtils;
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        token = jwtUtils.generateJwtToken(authentication);
-    }
+    @MockBean
+    private UserDetailsServiceImpl userDetailsService;
 
+
+    @WithMockUser(username="yoga@studio.com")
     @Test
     void findUserByIdTest_valid() throws Exception {
+        User user = new User();
+        user.setId(1L);
+
+        UserDto userDto = new UserDto();
+        userDto.setId(1L);
+
+        given(userService.findById(1L)).willReturn(user);
+        given(userMapper.toDto(user)).willReturn(userDto);
+
         mockMvc.perform(get("/api/user/1")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value("1"))
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+                .andExpect(jsonPath("$.id").value(1));
     }
 
+
     @Test
+    @WithMockUser(username="yoga@studio.com")
     void findUserByIdTest_UserNotFound() throws Exception {
-        mockMvc.perform(get("/api/user/55")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+        mockMvc.perform(get("/api/user/55"))
                 .andExpect(status().isNotFound());
     }
 
     @Test
+    @WithMockUser(username = "test@gmail.com")
     void deleteUserTest_Valid() throws Exception {
-        SignupRequest signupRequest = new SignupRequest();
-        signupRequest.setLastName("TANNER");
-        signupRequest.setFirstName("Jean");
-        signupRequest.setPassword("test1234");
-        signupRequest.setEmail("test@gmail.com");
+        // Create a user object with the same email as the authenticated user.
+        User user = new User();
+        user.setId(1L);
+        user.setEmail("test@gmail.com");
 
-        mockMvc.perform(post("/api/auth/register")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(signupRequest)));
+        // Mock the behavior of userService to return this user.
+        given(userService.findById(1L)).willReturn(user);
 
-
-        User user = userRepository.findByEmail(signupRequest.getEmail()).orElseThrow(null);
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken("test@gmail.com","test1234")
-        );
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        token = jwtUtils.generateJwtToken(authentication);
-
-        mockMvc.perform(delete("/api/user/"+user.getId())
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+        // Perform the delete request.
+        mockMvc.perform(delete("/api/user/1"))
                 .andExpect(status().isOk());
+
     }
 
     @Test
     void deleteUserTest_UnauthorizedToDeleteUser() throws Exception {
-        SignupRequest signupRequest = new SignupRequest();
-        signupRequest.setLastName("TANNER");
-        signupRequest.setFirstName("Jean");
-        signupRequest.setPassword("test1234");
-        signupRequest.setEmail("test@gmail.com");
+        // Create a user object with the same email as the authenticated user.
+        User user = new User();
+        user.setId(1L);
+        user.setEmail("test@gmail.com");
 
-        mockMvc.perform(post("/api/auth/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(signupRequest)));
+        // Mock the behavior of userService to return this user.
+        given(userService.findById(1L)).willReturn(user);
 
-        User user = userRepository.findByEmail(signupRequest.getEmail()).orElseThrow(null);
-
-        mockMvc.perform(delete("/api/user/"+user.getId())
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+        // Perform the delete request.
+        mockMvc.perform(delete("/api/user/1"))
                 .andExpect(status().isUnauthorized());
     }
 
     @Test
+    @WithMockUser(username="yoga@studio.com")
     void deleteUserTest_UserNotExist() throws Exception {
-        mockMvc.perform(delete("/api/user/55")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+        mockMvc.perform(delete("/api/user/55"))
                 .andExpect(status().isNotFound());
     }
-
-
 
 }

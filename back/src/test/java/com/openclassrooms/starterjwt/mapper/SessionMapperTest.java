@@ -29,6 +29,9 @@ class SessionMapperTest {
     @Mock
     private TeacherService teacherService;
 
+    @Mock
+    private UserService userService;
+
     @Test
     void toDtoTest_SessionNotNull(){
         LocalDateTime now = LocalDateTime.now();
@@ -74,7 +77,7 @@ class SessionMapperTest {
         Date date = new Date();
         Teacher teacher = new Teacher();
         teacher.setId(1L);
-        List<Long> users = new ArrayList<Long>();
+        List<Long> users = new ArrayList<>();
         users.add(1L);
         users.add(2L);
         String description = "description";

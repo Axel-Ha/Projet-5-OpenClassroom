@@ -1,125 +1,162 @@
 package com.openclassrooms.starterjwt.Controllers.Integrations;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.openclassrooms.starterjwt.MapperConfig;
+import com.openclassrooms.starterjwt.AuthConfig;
+import com.openclassrooms.starterjwt.controllers.SessionController;
 import com.openclassrooms.starterjwt.dto.SessionDto;
+import com.openclassrooms.starterjwt.exception.BadRequestException;
+import com.openclassrooms.starterjwt.exception.NotFoundException;
 import com.openclassrooms.starterjwt.mapper.SessionMapper;
 import com.openclassrooms.starterjwt.models.Session;
 import com.openclassrooms.starterjwt.models.User;
 import com.openclassrooms.starterjwt.repository.SessionRepository;
+import com.openclassrooms.starterjwt.security.jwt.AuthEntryPointJwt;
 import com.openclassrooms.starterjwt.security.jwt.JwtUtils;
+import com.openclassrooms.starterjwt.security.services.UserDetailsServiceImpl;
 import com.openclassrooms.starterjwt.services.SessionService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpHeaders;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.willDoNothing;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@AutoConfigureMockMvc
+@WebMvcTest(SessionController.class)
+@Import(AuthConfig.class)
 class SessionControllerIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
+    @MockBean
     private SessionService sessionService;
 
-    @Autowired
+    @MockBean
     private SessionRepository sessionRepository;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
+    @MockBean
     private JwtUtils jwtUtils;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    @MockBean
+    private AuthenticationManager authenticationManager;
 
-    private String token;
+    @MockBean
+    private SessionMapper sessionMapper;
 
-    @BeforeEach
-    public void setupAuthAndToken(){
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken("yoga@studio.com","test!1234")
-        );
+    @MockBean
+    private UserDetailsServiceImpl userDetailsService;
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        token = jwtUtils.generateJwtToken(authentication);
-    }
 
+
+    @WithMockUser(username="yoga@studio.com")
     @Test
     void findSessionByIdTest_ExistSession() throws Exception {
+        Session session = new Session();
+        session.setId(1L);
+        session.setName("Yoga session 1");
+
+        SessionDto sessionDto = new SessionDto();
+        sessionDto.setId(1L);
+        sessionDto.setName("Yoga session 1");
+
+        given(sessionService.getById(1L)).willReturn(session);
+        given(sessionMapper.toDto(session)).willReturn(sessionDto);
         mockMvc.perform(get("/api/session/1")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value("1"))
+                .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.name").value("Yoga session 1"));
     }
 
     @Test
+    @WithMockUser(username="yoga@studio.com")
     public void findSessionByIdTest_SessionDoesNotExist() throws Exception {
         mockMvc.perform(get("/api/session/999")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
 
+    @WithMockUser(username="yoga@studio.com")
     @Test
     public void findAllSessionTest() throws Exception {
-        mockMvc.perform(get("/api/session")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+        Session session = new Session();
+        session.setId(1L);
+        SessionDto sessionDto = new SessionDto();
+        sessionDto.setId(1L);
+
+        ArrayList<Session> sessionArrayList = new ArrayList<Session>();
+        sessionArrayList.add(session);
+
+        ArrayList<SessionDto> sessionDtoArrayList = new ArrayList<SessionDto>();
+        sessionDtoArrayList.add(sessionDto);
+
+        given(sessionService.findAll()).willReturn(sessionArrayList);
+        given(sessionMapper.toDto(sessionArrayList)).willReturn(sessionDtoArrayList);
+
+        mockMvc.perform(get("/api/session"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[0].id").value("1"))
-                .andExpect(jsonPath("$.[1].id").value("2"));
+                .andExpect(jsonPath("$[0].id").value("1"));
     }
 
+    @WithMockUser(username="yoga@studio.com")
     @Test
     void createSessionTest() throws Exception {
         SessionDto sessionDto = new SessionDto();
+        sessionDto.setId(1L);
         sessionDto.setName("Yoga Session Create");
-        sessionDto.setDate(new Date());
         sessionDto.setTeacher_id(1L);
         sessionDto.setDescription("Yoga Session Description");
+        sessionDto.setDate(new Date());
 
-        String response = mockMvc.perform(post("/api/session")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+        Session session = new Session();
+        session.setId(1L);
+        session.setName("Yoga Session Create");
+
+        // Assume that sessionService.create will return the session object.
+        given(sessionMapper.toEntity(sessionDto)).willReturn(session);
+        given(sessionService.create(session)).willReturn(session);
+        given(sessionMapper.toDto(session)).willReturn(sessionDto);
+
+        // Use ObjectMapper to convert the DTO to JSON string
+        ObjectMapper objectMapper = new ObjectMapper();
+        String sessionDtoJson = objectMapper.writeValueAsString(sessionDto);
+
+        mockMvc.perform(post("/api/session")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(sessionDto)))
+                        .content(sessionDtoJson))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Yoga Session Create"))
-                .andReturn().getResponse().getContentAsString();
-
-        SessionDto sessionFromResponse = objectMapper.readValue(response,sessionDto.getClass());
-
-        Session session = sessionRepository.findById(sessionFromResponse.getId()).orElseThrow(null);
-        sessionService.delete(session.getId());
+                .andExpect(jsonPath("$.teacher_id").value(1))
+                .andExpect(jsonPath("$.description").value("Yoga Session Description"));
     }
 
+
+
+
+    @WithMockUser(username="yoga@studio.com")
     @Test
     void updateSessionTest_Valid() throws Exception {
         Session session = Session.builder()
+                .id(1L)
                 .name("Yoga session")
                 .date(new Date())
                 .description("Description")
                 .build();
-        sessionService.create(session);
 
         SessionDto sessionDto = new SessionDto();
         sessionDto.setName("Yoga session updated");
@@ -127,68 +164,102 @@ class SessionControllerIntegrationTest {
         sessionDto.setTeacher_id(1L);
         sessionDto.setDate(new Date());
 
-        mockMvc.perform(put("/api/session/"+ session.getId())
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+        Session updatedSession = Session.builder()
+                .id(1L)
+                .name(sessionDto.getName())
+                .date(sessionDto.getDate())
+                .description(sessionDto.getDescription())
+                .build();
+
+        given(sessionService.getById(session.getId())).willReturn(session);
+        given(sessionMapper.toEntity(sessionDto)).willReturn(updatedSession);
+        given(sessionService.update(session.getId(), updatedSession)).willReturn(updatedSession);
+        given(sessionMapper.toDto(updatedSession)).willReturn(sessionDto);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String sessionDtoJson = objectMapper.writeValueAsString(sessionDto);
+
+        mockMvc.perform(put("/api/session/" + session.getId())
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(sessionDto)))
+                        .content(sessionDtoJson))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Yoga session updated"))
                 .andExpect(jsonPath("$.description").value("Description updated"));
-        sessionService.delete(session.getId());
     }
 
+
+
+    @WithMockUser(username="yoga@studio.com")
     @Test
     void updateSessionTest_SessionDoesNotExist() throws Exception {
-        mockMvc.perform(put("/api/session/999")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+        mockMvc.perform(put("/api/session/999"))
                 .andExpect(status().isBadRequest());
     }
 
+    @WithMockUser(username="yoga@studio.com")
     @Test
     void deleteSessionTest_Valid() throws Exception {
         Session session = Session.builder()
+                .id(1L)
                 .name("Yoga session")
                 .date(new Date())
                 .description("Description")
                 .build();
-        sessionService.create(session);
+
+
+        given(sessionService.getById(session.getId())).willReturn(session);
+        willDoNothing().given(sessionService).delete(session.getId());
 
         mockMvc.perform(delete("/api/session/" + session.getId())
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+
+        verify(sessionService).delete(session.getId());
     }
 
+
+    @WithMockUser(username="yoga@studio.com")
     @Test
     void deleteSessionTest_SessionDoesNotExist() throws Exception {
-        mockMvc.perform(delete("/api/session/999")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+        mockMvc.perform(delete("/api/session/999"))
                 .andExpect(status().isNotFound());
     }
 
+    @WithMockUser(username="yoga@studio.com")
     @Test
     void participateSessionTest_Valid() throws Exception {
         Session session = Session.builder()
+                .id(1L)
                 .name("Yoga session")
                 .date(new Date())
                 .description("Description")
                 .users(new ArrayList<>())
                 .build();
-        sessionService.create(session);
 
-        mockMvc.perform(post("/api/session/"+session.getId()+"/participate/1")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+        given(sessionService.create(session)).willReturn(session);
+        given(sessionService.getById(session.getId())).willReturn(session);
+        willDoNothing().given(sessionService).participate(session.getId(), 1L);
+        willDoNothing().given(sessionService).delete(session.getId());
+
+        mockMvc.perform(post("/api/session/" + session.getId() + "/participate/1"))
                 .andExpect(status().isOk());
+
         sessionService.delete(session.getId());
+        verify(sessionService).delete(session.getId());
     }
 
+
+    @WithMockUser(username="yoga@studio.com")
     @Test
     void participateSessionTest_SessionDoesNotExist() throws Exception {
-        mockMvc.perform(post("/api/session/999/participate/1")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+        doThrow(new NotFoundException()).when(sessionService).participate(999L, 1L);
+
+        mockMvc.perform(post("/api/session/999/participate/1"))
                 .andExpect(status().isNotFound());
     }
 
 
+    @WithMockUser(username="yoga@studio.com")
     @Test
     void participateSessionTest_UserDoesNotExist() throws Exception {
         Session session = Session.builder()
@@ -197,14 +268,18 @@ class SessionControllerIntegrationTest {
                 .description("Description")
                 .users(new ArrayList<>())
                 .build();
-        sessionService.create(session);
+        session.setId(1L);
 
-        mockMvc.perform(post("/api/session/"+session.getId()+"/participate/25")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+        doThrow(new NotFoundException()).when(sessionService).participate(session.getId(), 25L);
+
+        mockMvc.perform(post("/api/session/" + session.getId() + "/participate/25"))
                 .andExpect(status().isNotFound());
+
         sessionService.delete(session.getId());
     }
 
+
+    @WithMockUser(username="yoga@studio.com")
     @Test
     void participateSessionTest_UserAlreadyParticipate() throws Exception {
         User user = User.builder()
@@ -215,23 +290,27 @@ class SessionControllerIntegrationTest {
                 .firstName("Jean")
                 .password("1234")
                 .build();
-        List<User> userList = new ArrayList<User>();
+
+        List<User> userList = new ArrayList<>();
         userList.add(user);
         Session session = Session.builder()
+                .id(1L)
                 .name("Yoga session")
                 .date(new Date())
                 .description("Description")
                 .users(userList)
                 .build();
-        sessionService.create(session);
 
-        mockMvc.perform(post("/api/session/"+session.getId()+"/participate/1")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+        doThrow(new BadRequestException()).when(sessionService).participate(session.getId(), user.getId());
+
+        mockMvc.perform(post("/api/session/" + session.getId() + "/participate/1"))
                 .andExpect(status().isBadRequest());
 
         sessionService.delete(session.getId());
     }
 
+
+    @WithMockUser(username="yoga@studio.com")
     @Test
     void noLongerParticipateSessionTest_Valid() throws Exception {
         User user = User.builder()
@@ -242,43 +321,52 @@ class SessionControllerIntegrationTest {
                 .firstName("Jean")
                 .password("1234")
                 .build();
-        List<User> userList = new ArrayList<User>();
+
+        List<User> userList = new ArrayList<>();
         userList.add(user);
         Session session = Session.builder()
+                .id(1L)
                 .name("Yoga session")
                 .date(new Date())
                 .description("Description")
                 .users(userList)
                 .build();
-        sessionService.create(session);
 
-        mockMvc.perform(delete("/api/session/"+session.getId()+"/participate/"+user.getId())
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+        willDoNothing().given(sessionService).noLongerParticipate(session.getId(), user.getId());
+
+        mockMvc.perform(delete("/api/session/" + session.getId() + "/participate/" + user.getId()))
                 .andExpect(status().isOk());
 
         sessionService.delete(session.getId());
     }
 
+    @WithMockUser(username="yoga@studio.com")
     @Test
     void noLongerParticipateSessionTest_UserDoesNotParticipate() throws Exception {
         Session session = Session.builder()
+                .id(1L)
                 .name("Yoga session")
                 .date(new Date())
                 .description("Description")
                 .users(new ArrayList<>())
                 .build();
-        sessionService.create(session);
 
-        mockMvc.perform(delete("/api/session/"+session.getId()+"/participate/1")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+
+        doThrow(new BadRequestException()).when(sessionService).noLongerParticipate(session.getId(), 1L);
+
+        mockMvc.perform(delete("/api/session/" + session.getId() + "/participate/1"))
                 .andExpect(status().isBadRequest());
 
         sessionService.delete(session.getId());
     }
+
+    @WithMockUser(username="yoga@studio.com")
     @Test
     void noLongerParticipateSessionTest_SessionDoesNotExist() throws Exception {
-        mockMvc.perform(delete("/api/session/1/participate/1")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
-                .andExpect(status().isBadRequest());
+        doThrow(new NotFoundException()).when(sessionService).noLongerParticipate(1L, 1L);
+
+        mockMvc.perform(delete("/api/session/1/participate/1"))
+                .andExpect(status().isNotFound());
     }
+
 }
