@@ -1,172 +1,107 @@
 package com.openclassrooms.starterjwt.Controllers.Integrations;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.openclassrooms.starterjwt.AuthConfig;
-import com.openclassrooms.starterjwt.controllers.AuthController;
-import com.openclassrooms.starterjwt.controllers.TeacherController;
 import com.openclassrooms.starterjwt.models.User;
 import com.openclassrooms.starterjwt.payload.request.LoginRequest;
 import com.openclassrooms.starterjwt.payload.request.SignupRequest;
 import com.openclassrooms.starterjwt.repository.UserRepository;
-import com.openclassrooms.starterjwt.security.jwt.AuthEntryPointJwt;
-import com.openclassrooms.starterjwt.security.jwt.JwtUtils;
-import com.openclassrooms.starterjwt.security.services.UserDetailsImpl;
-import com.openclassrooms.starterjwt.security.services.UserDetailsServiceImpl;
-import com.openclassrooms.starterjwt.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
-import org.springframework.http.MediaType;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Collections;
-import java.util.Optional;
+import java.net.URI;
+import java.net.URISyntaxException;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@WebMvcTest(AuthController.class)
-@Import(AuthConfig.class)
-//création de AuthConfig car AuthEntryPointJwt n'est pas appelé alors qu'une erreur est relevé
-class AuthControllerIntegrationTest {
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class AuthControllerIntegrationTest {
+
     @Autowired
-    private MockMvc mockMvc;
+    private TestRestTemplate restTemplate;
 
-    @MockBean
-    private UserService userService;
+    @LocalServerPort
+    private int randomServerPort;
 
-    @MockBean
+    @Autowired
     private UserRepository userRepository;
 
-    @MockBean
-    private AuthenticationManager authenticationManager;
-
-    @MockBean
-    private JwtUtils jwtUtils;
-
-    @MockBean
-    private UserDetailsServiceImpl userDetailsService;
-
-
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Test
-    @WithMockUser(username = "yoga@studio.com")
-    void authenticateAdminUserTest_Valid() throws Exception {
-        // Arrange
+    public void testAuthenticateAdminUserSuccess() throws URISyntaxException, JsonProcessingException {
+        User user = new User();
+        user.setEmail("test@studio.com");
+        user.setPassword(passwordEncoder.encode("test!1234")); // Ensure the password is encoded
+        user.setAdmin(true);
+        userRepository.save(user);
+
         LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setEmail("yoga@studio.com");
+        loginRequest.setEmail("test@studio.com");
         loginRequest.setPassword("test!1234");
 
-        // Create a mock UserDetailsImpl and User
-        UserDetailsImpl userDetails = new UserDetailsImpl(1L, "yoga@studio.com", "FirstName", "LastName", true, "password");
+        String loginRequestJson = new ObjectMapper().writeValueAsString(loginRequest);
+
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/auth/login";
+        URI uri = new URI(baseUrl);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+
+        HttpEntity<String> request = new HttpEntity<>(loginRequestJson, headers);
+
+        ResponseEntity<String> result = this.restTemplate.postForEntity(uri, request, String.class);
+
+        assertEquals(200, result.getStatusCodeValue());
+        assertEquals(true, result.getBody().contains("token"));
+        assertEquals(true, result.getBody().contains("test@studio.com"));
+        assertEquals(true, result.getBody().contains("admin"));
+
+        userRepository.delete(user);
+    }
+
+
+    @Test
+    public void testAuthenticateUserWithInvalidCredentials() throws URISyntaxException, JsonProcessingException {
         User user = new User();
         user.setEmail("yoga@studio.com");
-        user.setAdmin(true);
-
-        // Mock the authentication process and context
-        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
-                .thenReturn(new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities()));
-        when(jwtUtils.generateJwtToken(any(Authentication.class))).thenReturn("token123");
-        when(userRepository.findByEmail("yoga@studio.com")).thenReturn(Optional.of(user));
-
-        // Convert LoginRequest to JSON
-        String loginRequestJson = new ObjectMapper().writeValueAsString(loginRequest);
-
-        // Act & Assert
-        mockMvc.perform(post("/api/auth/login")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(loginRequestJson))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.token").value("token123"))
-                .andExpect(jsonPath("$.username").value("yoga@studio.com"))
-                .andExpect(jsonPath("$.admin").value(true));
-    }
-
-    @Test
-    void authenticateNonAdminUserTest_Valid() throws Exception {
-        // Arrange
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setEmail("test@gmail.com");
-        loginRequest.setPassword("test1234");
-
-        // Create a mock UserDetailsImpl and User
-        UserDetailsImpl userDetails = new UserDetailsImpl(1L, "test@gmail.com", "Jean", "TANNER", false, "password");
-        User user = new User();
-        user.setEmail("test@gmail.com");
+        user.setPassword("test!1234");
         user.setAdmin(false);
+        userRepository.save(user);
 
-        // Mock the authentication process and context
-        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
-                .thenReturn(new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities()));
-        when(jwtUtils.generateJwtToken(any(Authentication.class))).thenReturn("token123");
-        when(userRepository.findByEmail("test@gmail.com")).thenReturn(Optional.of(user));
-
-        // Convert LoginRequest to JSON
-        String loginRequestJson = new ObjectMapper().writeValueAsString(loginRequest);
-
-        // Act & Assert
-        mockMvc.perform(post("/api/auth/login")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(loginRequestJson))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.token").value("token123"))
-                .andExpect(jsonPath("$.username").value("test@gmail.com"))
-                .andExpect(jsonPath("$.admin").value(false));
-
-        // Cleanup: Delete the user after the test
-        userService.delete(user.getId());
-    }
-
-
-    @Test
-    void authenticateUserTest_Failed() throws Exception {
         LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setEmail("emailNotExisting@gmail.com");
-        loginRequest.setPassword("password");
-
-        when(authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())))
-                .thenThrow(new BadCredentialsException("Invalid credentials"));
-
+        loginRequest.setEmail("yoga@studio.com");
+        loginRequest.setPassword("wrongpassword");
 
         String loginRequestJson = new ObjectMapper().writeValueAsString(loginRequest);
 
-        mockMvc.perform(post("/api/auth/login")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(loginRequestJson))
-                .andExpect(status().isUnauthorized())
-                .andExpect(jsonPath("$.token").doesNotExist());
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/auth/login";
+        URI uri = new URI(baseUrl);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+
+        HttpEntity<String> request = new HttpEntity<>(loginRequestJson, headers);
+
+        ResponseEntity<String> result = this.restTemplate.postForEntity(uri, request, String.class);
+
+        assertEquals(401, result.getStatusCodeValue());
+
+        userRepository.delete(user);
     }
 
-
-
-
-
     @Test
-    void registerUser_Valid() throws Exception {
+    public void registerUser_Valid() throws URISyntaxException, JsonProcessingException {
         SignupRequest signupRequest = new SignupRequest();
         signupRequest.setLastName("TANNER");
         signupRequest.setFirstName("Jean");
@@ -175,32 +110,56 @@ class AuthControllerIntegrationTest {
 
         String signupRequestJson = new ObjectMapper().writeValueAsString(signupRequest);
 
-        mockMvc.perform(post("/api/auth/register")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(signupRequestJson))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.message").value("User registered successfully!"));
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/auth/register";
+        URI uri = new URI(baseUrl);
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+
+        HttpEntity<String> request = new HttpEntity<>(signupRequestJson, headers);
+
+        ResponseEntity<String> result = this.restTemplate.postForEntity(uri, request, String.class);
+
+        assertEquals(200, result.getStatusCodeValue());
+        assertEquals(true, result.getBody().contains("User registered successfully!"));
+
+        userRepository.delete(userRepository.findByEmail("test@gmail.com").get());
     }
 
     @Test
-    void registerUser_EmailAlreadyTaken() throws Exception {
+    public void registerUser_EmailAlreadyTaken() throws URISyntaxException, JsonProcessingException {
+        User user = new User();
+        user.setEmail("test@studio.com");
+        user.setPassword("test!1234");
+        user.setAdmin(false);
+        userRepository.save(user);
+
         SignupRequest signupRequest = new SignupRequest();
         signupRequest.setLastName("TANNER");
         signupRequest.setFirstName("Jean");
         signupRequest.setPassword("test1234");
-        signupRequest.setEmail("yoga@studio.com");
-
-        when(userRepository.existsByEmail("yoga@studio.com")).thenReturn(true);
+        signupRequest.setEmail("test@studio.com");
 
         String signupRequestJson = new ObjectMapper().writeValueAsString(signupRequest);
 
-        mockMvc.perform(post("/api/auth/register")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(signupRequestJson))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message").value("Error: Email is already taken!"));
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/auth/register";
+        URI uri = new URI(baseUrl);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+
+        HttpEntity<String> request = new HttpEntity<>(signupRequestJson, headers);
+
+        ResponseEntity<String> result = this.restTemplate.postForEntity(uri, request, String.class);
+
+        assertEquals(400, result.getStatusCodeValue());
+        assertEquals(true, result.getBody().contains("Error: Email is already taken!"));
+
+        userRepository.delete(user);
     }
-
-
 }
+
+
+
+
+

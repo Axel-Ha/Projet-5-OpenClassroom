@@ -1,162 +1,166 @@
 package com.openclassrooms.starterjwt.Controllers.Integrations;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.openclassrooms.starterjwt.MapperConfig;
-import com.openclassrooms.starterjwt.AuthConfig;
-import com.openclassrooms.starterjwt.controllers.SessionController;
 import com.openclassrooms.starterjwt.dto.SessionDto;
-import com.openclassrooms.starterjwt.exception.BadRequestException;
-import com.openclassrooms.starterjwt.exception.NotFoundException;
 import com.openclassrooms.starterjwt.mapper.SessionMapper;
 import com.openclassrooms.starterjwt.models.Session;
-import com.openclassrooms.starterjwt.models.User;
 import com.openclassrooms.starterjwt.repository.SessionRepository;
-import com.openclassrooms.starterjwt.security.jwt.AuthEntryPointJwt;
 import com.openclassrooms.starterjwt.security.jwt.JwtUtils;
-import com.openclassrooms.starterjwt.security.services.UserDetailsServiceImpl;
-import com.openclassrooms.starterjwt.services.SessionService;
+import com.openclassrooms.starterjwt.security.services.UserDetailsImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Import;
-import org.springframework.http.MediaType;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.*;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextImpl;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.ArrayList;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.List;
 
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.willDoNothing;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@WebMvcTest(SessionController.class)
-@Import(AuthConfig.class)
-class SessionControllerIntegrationTest {
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class SessionControllerIntegrationTest {
+
     @Autowired
-    private MockMvc mockMvc;
+    private TestRestTemplate restTemplate;
 
-    @MockBean
-    private SessionService sessionService;
+    @LocalServerPort
+    private int randomServerPort;
 
-    @MockBean
+    @Autowired
     private SessionRepository sessionRepository;
 
-    @MockBean
-    private JwtUtils jwtUtils;
-
-    @MockBean
-    private AuthenticationManager authenticationManager;
-
-    @MockBean
+    @Autowired
     private SessionMapper sessionMapper;
 
-    @MockBean
-    private UserDetailsServiceImpl userDetailsService;
 
+    @Autowired
+    private JwtUtils jwtUtils;
 
+    private String token;
 
-    @WithMockUser(username="yoga@studio.com")
+    @BeforeEach
+    public void setUp() {
+        UserDetailsImpl userDetails = new UserDetailsImpl(1L, "yoga@studio.com","Jean","Tanner",true,"test!1234");
+        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+
+        SecurityContext securityContext = new SecurityContextImpl(authentication);
+        SecurityContextHolder.setContext(securityContext);
+
+         token = jwtUtils.generateJwtToken(authentication);
+    }
+
     @Test
-    void findSessionByIdTest_ExistSession() throws Exception {
+    public void findSessionByIdTest_ExistSession() throws URISyntaxException {
         Session session = new Session();
-        session.setId(1L);
-        session.setName("Yoga session 1");
+        session.setName("Yoga session");
+        session.setDescription("A relaxing yoga session");
+        session.setDate(new Date());
+        sessionRepository.save(session);
 
-        SessionDto sessionDto = new SessionDto();
-        sessionDto.setId(1L);
-        sessionDto.setName("Yoga session 1");
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/session/" + session.getId();
+        URI uri = new URI(baseUrl);
 
-        given(sessionService.getById(1L)).willReturn(session);
-        given(sessionMapper.toDto(session)).willReturn(sessionDto);
-        mockMvc.perform(get("/api/session/1")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.name").value("Yoga session 1"));
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + token);
+        HttpEntity<String> request = new HttpEntity<>(headers);
+
+        ResponseEntity<SessionDto> result = this.restTemplate.exchange(uri, HttpMethod.GET, request, SessionDto.class);
+
+        assertEquals(200, result.getStatusCodeValue());
+        assertEquals(session.getId(), result.getBody().getId());
+        assertEquals("Yoga session", result.getBody().getName());
+
+        sessionRepository.delete(session);
+    }
+
+
+
+    @Test
+    public void findSessionByIdTest_SessionDoesNotExist() throws URISyntaxException {
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/session/999";
+        URI uri = new URI(baseUrl);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + token);
+        HttpEntity<String> request = new HttpEntity<>(headers);
+
+        ResponseEntity<Void> result = this.restTemplate.exchange(uri, HttpMethod.GET, request, Void.class);
+
+        assertEquals(404, result.getStatusCodeValue());
     }
 
     @Test
-    @WithMockUser(username="yoga@studio.com")
-    public void findSessionByIdTest_SessionDoesNotExist() throws Exception {
-        mockMvc.perform(get("/api/session/999")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound());
-    }
-
-    @WithMockUser(username="yoga@studio.com")
-    @Test
-    public void findAllSessionTest() throws Exception {
+    public void findAllSessionTest() throws URISyntaxException {
         Session session = new Session();
-        session.setId(1L);
-        SessionDto sessionDto = new SessionDto();
-        sessionDto.setId(1L);
+        session.setName("Yoga session");
+        session.setDescription("A relaxing yoga session"); // Set the description
+        session.setDate(new Date()); // Set the date
+        sessionRepository.save(session);
 
-        ArrayList<Session> sessionArrayList = new ArrayList<Session>();
-        sessionArrayList.add(session);
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/session";
+        URI uri = new URI(baseUrl);
 
-        ArrayList<SessionDto> sessionDtoArrayList = new ArrayList<SessionDto>();
-        sessionDtoArrayList.add(sessionDto);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + token);
+        HttpEntity<String> request = new HttpEntity<>(headers);
 
-        given(sessionService.findAll()).willReturn(sessionArrayList);
-        given(sessionMapper.toDto(sessionArrayList)).willReturn(sessionDtoArrayList);
+        ResponseEntity<List> result = this.restTemplate.exchange(uri, HttpMethod.GET, request, List.class);
 
-        mockMvc.perform(get("/api/session"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].id").value("1"));
+        assertEquals(200, result.getStatusCodeValue());
+        assertTrue(result.getBody().size() > 0);
+
+        sessionRepository.delete(session);
     }
 
-    @WithMockUser(username="yoga@studio.com")
     @Test
-    void createSessionTest() throws Exception {
+    public void createSessionTest() throws URISyntaxException, JsonProcessingException {
         SessionDto sessionDto = new SessionDto();
-        sessionDto.setId(1L);
         sessionDto.setName("Yoga Session Create");
         sessionDto.setTeacher_id(1L);
         sessionDto.setDescription("Yoga Session Description");
         sessionDto.setDate(new Date());
 
-        Session session = new Session();
-        session.setId(1L);
-        session.setName("Yoga Session Create");
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/session";
+        URI uri = new URI(baseUrl);
 
-        // Assume that sessionService.create will return the session object.
-        given(sessionMapper.toEntity(sessionDto)).willReturn(session);
-        given(sessionService.create(session)).willReturn(session);
-        given(sessionMapper.toDto(session)).willReturn(sessionDto);
-
-        // Use ObjectMapper to convert the DTO to JSON string
         ObjectMapper objectMapper = new ObjectMapper();
         String sessionDtoJson = objectMapper.writeValueAsString(sessionDto);
 
-        mockMvc.perform(post("/api/session")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(sessionDtoJson))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Yoga Session Create"))
-                .andExpect(jsonPath("$.teacher_id").value(1))
-                .andExpect(jsonPath("$.description").value("Yoga Session Description"));
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Authorization", "Bearer " + token);
+        HttpEntity<String> request = new HttpEntity<>(sessionDtoJson, headers);
+
+        ResponseEntity<SessionDto> result = this.restTemplate.postForEntity(uri, request, SessionDto.class);
+
+        assertEquals(200, result.getStatusCodeValue());
+        assertEquals("Yoga Session Create", result.getBody().getName());
+
+        sessionRepository.deleteById(result.getBody().getId());
     }
 
-
-
-
-    @WithMockUser(username="yoga@studio.com")
     @Test
-    void updateSessionTest_Valid() throws Exception {
-        Session session = Session.builder()
-                .id(1L)
-                .name("Yoga session")
-                .date(new Date())
-                .description("Description")
-                .build();
+    public void updateSessionTest_Valid() throws URISyntaxException, JsonProcessingException {
+        Session session = new Session();
+        session.setName("Yoga session");
+        session.setDescription("A relaxing yoga session");
+        session.setDate(new Date());
+        sessionRepository.save(session);
 
         SessionDto sessionDto = new SessionDto();
         sessionDto.setName("Yoga session updated");
@@ -164,209 +168,162 @@ class SessionControllerIntegrationTest {
         sessionDto.setTeacher_id(1L);
         sessionDto.setDate(new Date());
 
-        Session updatedSession = Session.builder()
-                .id(1L)
-                .name(sessionDto.getName())
-                .date(sessionDto.getDate())
-                .description(sessionDto.getDescription())
-                .build();
-
-        given(sessionService.getById(session.getId())).willReturn(session);
-        given(sessionMapper.toEntity(sessionDto)).willReturn(updatedSession);
-        given(sessionService.update(session.getId(), updatedSession)).willReturn(updatedSession);
-        given(sessionMapper.toDto(updatedSession)).willReturn(sessionDto);
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/session/" + session.getId();
+        URI uri = new URI(baseUrl);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String sessionDtoJson = objectMapper.writeValueAsString(sessionDto);
 
-        mockMvc.perform(put("/api/session/" + session.getId())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(sessionDtoJson))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Yoga session updated"))
-                .andExpect(jsonPath("$.description").value("Description updated"));
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+        headers.set("Authorization", "Bearer " + token);
+
+        HttpEntity<String> request = new HttpEntity<>(sessionDtoJson, headers);
+
+        ResponseEntity<SessionDto> result = this.restTemplate.exchange(uri, HttpMethod.PUT, request, SessionDto.class);
+
+        assertEquals(200, result.getStatusCodeValue());
+        assertEquals("Yoga session updated", result.getBody().getName());
+
+        sessionRepository.delete(session);
     }
 
-
-
-    @WithMockUser(username="yoga@studio.com")
     @Test
-    void updateSessionTest_SessionDoesNotExist() throws Exception {
-        mockMvc.perform(put("/api/session/999"))
-                .andExpect(status().isBadRequest());
+    public void updateSessionTest_SessionDoesNotExist() throws URISyntaxException, JsonProcessingException {
+        SessionDto sessionDto = new SessionDto();
+        sessionDto.setName("Non-existing session");
+
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/session/999";
+        URI uri = new URI(baseUrl);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String sessionDtoJson = objectMapper.writeValueAsString(sessionDto);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+        headers.set("Authorization", "Bearer " + token);
+
+        HttpEntity<String> request = new HttpEntity<>(sessionDtoJson, headers);
+
+        ResponseEntity<Void> result = this.restTemplate.exchange(uri, HttpMethod.PUT, request, Void.class);
+
+        assertEquals(400, result.getStatusCodeValue());
     }
 
-    @WithMockUser(username="yoga@studio.com")
     @Test
-    void deleteSessionTest_Valid() throws Exception {
-        Session session = Session.builder()
-                .id(1L)
-                .name("Yoga session")
-                .date(new Date())
-                .description("Description")
-                .build();
+    public void deleteSessionTest_Valid() throws URISyntaxException {
+        Session session = new Session();
+        session.setName("Yoga session");
+        session.setDescription("A relaxing yoga session");
+        session.setDate(new Date());
+        sessionRepository.save(session);
 
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/session/" + session.getId();
+        URI uri = new URI(baseUrl);
 
-        given(sessionService.getById(session.getId())).willReturn(session);
-        willDoNothing().given(sessionService).delete(session.getId());
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+        headers.set("Authorization", "Bearer " + token);
 
-        mockMvc.perform(delete("/api/session/" + session.getId())
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+        HttpEntity<String> request = new HttpEntity<>(headers);
 
-        verify(sessionService).delete(session.getId());
+        ResponseEntity<Void> result = this.restTemplate.exchange(uri, HttpMethod.DELETE, request, Void.class);
+
+        assertEquals(200, result.getStatusCodeValue());
+
+        sessionRepository.delete(session);
     }
 
-
-    @WithMockUser(username="yoga@studio.com")
     @Test
-    void deleteSessionTest_SessionDoesNotExist() throws Exception {
-        mockMvc.perform(delete("/api/session/999"))
-                .andExpect(status().isNotFound());
+    public void deleteSessionTest_SessionDoesNotExist() throws URISyntaxException {
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/session/999";
+        URI uri = new URI(baseUrl);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+        headers.set("Authorization", "Bearer " + token);
+
+        HttpEntity<String> request = new HttpEntity<>(headers);
+
+        ResponseEntity<Void> result = this.restTemplate.exchange(uri, HttpMethod.DELETE, request, Void.class);
+
+        assertEquals(404, result.getStatusCodeValue());
     }
 
-    @WithMockUser(username="yoga@studio.com")
     @Test
-    void participateSessionTest_Valid() throws Exception {
-        Session session = Session.builder()
-                .id(1L)
-                .name("Yoga session")
-                .date(new Date())
-                .description("Description")
-                .users(new ArrayList<>())
-                .build();
+    public void participateSessionTest_Valid() throws URISyntaxException {
+        Session session = new Session();
+        session.setName("Yoga session");
+        session.setDescription("A relaxing yoga session");
+        session.setDate(new Date());
+        sessionRepository.save(session);
 
-        given(sessionService.create(session)).willReturn(session);
-        given(sessionService.getById(session.getId())).willReturn(session);
-        willDoNothing().given(sessionService).participate(session.getId(), 1L);
-        willDoNothing().given(sessionService).delete(session.getId());
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/session/" + session.getId() + "/participate/1";
+        URI uri = new URI(baseUrl);
 
-        mockMvc.perform(post("/api/session/" + session.getId() + "/participate/1"))
-                .andExpect(status().isOk());
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+        headers.set("Authorization", "Bearer " + token);
 
-        sessionService.delete(session.getId());
-        verify(sessionService).delete(session.getId());
+        HttpEntity<String> request = new HttpEntity<>(headers);
+
+        ResponseEntity<Void> result = this.restTemplate.postForEntity(uri, request, Void.class);
+
+        assertEquals(200, result.getStatusCodeValue());
+
+        sessionRepository.delete(session);
     }
 
-
-    @WithMockUser(username="yoga@studio.com")
     @Test
-    void participateSessionTest_SessionDoesNotExist() throws Exception {
-        doThrow(new NotFoundException()).when(sessionService).participate(999L, 1L);
+    public void participateSessionTest_SessionDoesNotExist() throws URISyntaxException {
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/session/999/participate/1";
+        URI uri = new URI(baseUrl);
 
-        mockMvc.perform(post("/api/session/999/participate/1"))
-                .andExpect(status().isNotFound());
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+        headers.set("Authorization", "Bearer " + token);
+
+        HttpEntity<String> request = new HttpEntity<>(headers);
+
+        ResponseEntity<Void> result = this.restTemplate.postForEntity(uri, request, Void.class);
+
+        assertEquals(404, result.getStatusCodeValue());
     }
 
-
-    @WithMockUser(username="yoga@studio.com")
     @Test
-    void participateSessionTest_UserDoesNotExist() throws Exception {
-        Session session = Session.builder()
-                .name("Yoga session")
-                .date(new Date())
-                .description("Description")
-                .users(new ArrayList<>())
-                .build();
-        session.setId(1L);
+    public void noLongerParticipateSessionTest_Valid() throws URISyntaxException {
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/session/1/participate/1";
+        URI uri = new URI(baseUrl);
 
-        doThrow(new NotFoundException()).when(sessionService).participate(session.getId(), 25L);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+        headers.set("Authorization", "Bearer " + token);
 
-        mockMvc.perform(post("/api/session/" + session.getId() + "/participate/25"))
-                .andExpect(status().isNotFound());
+        HttpEntity<String> request = new HttpEntity<>(headers);
 
-        sessionService.delete(session.getId());
+        ResponseEntity<Void> result = this.restTemplate.exchange(uri, HttpMethod.DELETE, request, Void.class);
+
+        assertEquals(200, result.getStatusCodeValue());
+
+        ResponseEntity<Void> reParticipateResult = this.restTemplate.postForEntity(uri, request, Void.class);
+
+        assertEquals(200, reParticipateResult.getStatusCodeValue());
+
     }
 
-
-    @WithMockUser(username="yoga@studio.com")
     @Test
-    void participateSessionTest_UserAlreadyParticipate() throws Exception {
-        User user = User.builder()
-                .id(1L)
-                .email("test@gmail.com")
-                .lastName("TANNER")
-                .admin(true)
-                .firstName("Jean")
-                .password("1234")
-                .build();
+    public void noLongerParticipateSessionTest_SessionDoesNotExist() throws URISyntaxException {
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/session/999/participate/1";
+        URI uri = new URI(baseUrl);
 
-        List<User> userList = new ArrayList<>();
-        userList.add(user);
-        Session session = Session.builder()
-                .id(1L)
-                .name("Yoga session")
-                .date(new Date())
-                .description("Description")
-                .users(userList)
-                .build();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+        headers.set("Authorization", "Bearer " + token);
 
-        doThrow(new BadRequestException()).when(sessionService).participate(session.getId(), user.getId());
+        HttpEntity<String> request = new HttpEntity<>(headers);
 
-        mockMvc.perform(post("/api/session/" + session.getId() + "/participate/1"))
-                .andExpect(status().isBadRequest());
+        ResponseEntity<Void> result = this.restTemplate.exchange(uri, HttpMethod.DELETE, request, Void.class);
 
-        sessionService.delete(session.getId());
+        assertEquals(404, result.getStatusCodeValue());
     }
-
-
-    @WithMockUser(username="yoga@studio.com")
-    @Test
-    void noLongerParticipateSessionTest_Valid() throws Exception {
-        User user = User.builder()
-                .id(1L)
-                .email("test@gmail.com")
-                .lastName("TANNER")
-                .admin(true)
-                .firstName("Jean")
-                .password("1234")
-                .build();
-
-        List<User> userList = new ArrayList<>();
-        userList.add(user);
-        Session session = Session.builder()
-                .id(1L)
-                .name("Yoga session")
-                .date(new Date())
-                .description("Description")
-                .users(userList)
-                .build();
-
-        willDoNothing().given(sessionService).noLongerParticipate(session.getId(), user.getId());
-
-        mockMvc.perform(delete("/api/session/" + session.getId() + "/participate/" + user.getId()))
-                .andExpect(status().isOk());
-
-        sessionService.delete(session.getId());
-    }
-
-    @WithMockUser(username="yoga@studio.com")
-    @Test
-    void noLongerParticipateSessionTest_UserDoesNotParticipate() throws Exception {
-        Session session = Session.builder()
-                .id(1L)
-                .name("Yoga session")
-                .date(new Date())
-                .description("Description")
-                .users(new ArrayList<>())
-                .build();
-
-
-        doThrow(new BadRequestException()).when(sessionService).noLongerParticipate(session.getId(), 1L);
-
-        mockMvc.perform(delete("/api/session/" + session.getId() + "/participate/1"))
-                .andExpect(status().isBadRequest());
-
-        sessionService.delete(session.getId());
-    }
-
-    @WithMockUser(username="yoga@studio.com")
-    @Test
-    void noLongerParticipateSessionTest_SessionDoesNotExist() throws Exception {
-        doThrow(new NotFoundException()).when(sessionService).noLongerParticipate(1L, 1L);
-
-        mockMvc.perform(delete("/api/session/1/participate/1"))
-                .andExpect(status().isNotFound());
-    }
-
 }
