@@ -55,6 +55,8 @@ describe('ListComponent', () => {
         imports: [
           RouterTestingModule.withRoutes([
             { path: 'create', component: FormComponent },
+            { path: 'detail/:id', component: DetailComponent },
+            { path: 'update/:id', component: FormComponent }
           ]),
           MatCardModule,
           MatIconModule,
@@ -106,5 +108,13 @@ describe('ListComponent', () => {
     expect(createButton).toBeNull();
   });
 
+  it('should navigate to session details when Detail button is clicked', async () => {
+    const sessionElements = fixture.nativeElement.querySelectorAll('.item');
+    const detailButton = sessionElements[0].querySelectorAll('button')[0];
+    detailButton.click();
 
+    await fixture.whenStable();
+
+    expect(router.url).toBe(`/detail/${mockSessions[0].id}`);
+  });
 });

@@ -15,6 +15,7 @@ import { SessionApiService } from '../../services/session-api.service';
 
 import { FormComponent } from './form.component';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { of } from 'rxjs';
 
 describe('FormComponent', () => {
@@ -24,6 +25,7 @@ describe('FormComponent', () => {
   let sessionApiService: SessionApiService;
   let matSnackBar: MatSnackBar;
   let router: Router;
+  let location: Location;
 
   const mockSession = {
     id: 1,
@@ -87,6 +89,7 @@ describe('FormComponent', () => {
     sessionApiService = TestBed.inject(SessionApiService);
     matSnackBar = TestBed.inject(MatSnackBar);
     router = TestBed.inject(Router);
+    location = TestBed.inject(Location);
 
     fixture.detectChanges();
 
@@ -118,6 +121,28 @@ describe('FormComponent', () => {
 
     expect(matSnackBar.open).toHaveBeenCalledWith('Session created !', 'Close', { duration: 3000 });
     expect(router.navigate).toHaveBeenCalledWith(['sessions']);
+  });
+  it('should submit the form in create mode', () => {
+    jest.spyOn(sessionApiService, 'create').mockReturnValue(of(mockSession));
+
+    component.sessionForm?.setValue({
+      name: 'Test Session',
+      date: '2024-08-25',
+      teacher_id: 1,
+      description: 'Test Description'
+    });
+
+    component.submit();
+
+    expect(sessionApiService.create).toBeCalledWith({
+      name: 'Test Session',
+      date: '2024-08-25',
+      teacher_id: 1,
+      description: 'Test Description'
+    });
+
+    expect(matSnackBar.open).toBeCalledWith('Session created !', 'Close', { duration: 3000 });
+    expect(router.navigate).toBeCalledWith(['sessions']);
   });
 
   it('should submit the form in update mode', () => {
