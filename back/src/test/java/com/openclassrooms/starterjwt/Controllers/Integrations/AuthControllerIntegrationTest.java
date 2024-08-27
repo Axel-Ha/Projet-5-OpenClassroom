@@ -42,7 +42,7 @@ public class AuthControllerIntegrationTest {
     public void testAuthenticateAdminUserSuccess() throws URISyntaxException, JsonProcessingException {
         User user = new User();
         user.setEmail("test@studio.com");
-        user.setPassword(passwordEncoder.encode("test!1234")); // Ensure the password is encoded
+        user.setPassword(passwordEncoder.encode("test!1234"));
         user.setAdmin(true);
         userRepository.save(user);
 
