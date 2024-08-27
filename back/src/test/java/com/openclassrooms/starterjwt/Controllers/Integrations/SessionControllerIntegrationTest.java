@@ -108,8 +108,8 @@ public class SessionControllerIntegrationTest {
     public void findAllSessionTest() throws URISyntaxException {
         Session session = new Session();
         session.setName("Yoga session");
-        session.setDescription("A relaxing yoga session"); // Set the description
-        session.setDate(new Date()); // Set the date
+        session.setDescription("A relaxing yoga session"); 
+        session.setDate(new Date()); 
         sessionRepository.save(session);
 
         final String baseUrl = "http://localhost:" + randomServerPort + "/api/session";
