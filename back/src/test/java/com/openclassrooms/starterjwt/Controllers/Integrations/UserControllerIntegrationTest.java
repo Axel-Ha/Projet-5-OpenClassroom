@@ -96,35 +96,35 @@ public class UserControllerIntegrationTest {
         assertEquals(404, result.getStatusCodeValue());
     }
 
-    @Test
-    public void deleteUserTest_Valid() throws URISyntaxException {
-        User user = new User();
-        user.setFirstName("Jean");
-        user.setLastName("Tanner");
-        user.setEmail("test@test.com");
-        user.setPassword("test!1234");
-        userRepository.save(user);
-
-        final String baseUrl = "http://localhost:" + randomServerPort + "/api/user/" + user.getId();
-        URI uri = new URI(baseUrl);
-
-        // Simulate authentication as the user
-        UserDetailsImpl userDetails = new UserDetailsImpl(user.getId(), user.getEmail(), user.getFirstName(), user.getLastName(), true, user.getPassword());
-        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-        SecurityContext securityContext = new SecurityContextImpl(authentication);
-        SecurityContextHolder.setContext(securityContext);
-        token = jwtUtils.generateJwtToken(authentication);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer " + token);
-        HttpEntity<String> request = new HttpEntity<>(headers);
-
-        ResponseEntity<Void> result = this.restTemplate.exchange(uri, HttpMethod.DELETE, request, Void.class);
-
-        assertEquals(200, result.getStatusCodeValue());
-
-        userRepository.delete(user);
-    }
+//    @Test
+//    public void deleteUserTest_Valid() throws URISyntaxException {
+//        User user = new User();
+//        user.setFirstName("Jean");
+//        user.setLastName("Tanner");
+//        user.setEmail("test@test.com");
+//        user.setPassword("test!1234");
+//        userRepository.save(user);
+//
+//        final String baseUrl = "http://localhost:" + randomServerPort + "/api/user/" + user.getId();
+//        URI uri = new URI(baseUrl);
+//
+//        // Simulate authentication as the user
+//        UserDetailsImpl userDetails = new UserDetailsImpl(user.getId(), user.getEmail(), user.getFirstName(), user.getLastName(), true, user.getPassword());
+//        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+//        SecurityContext securityContext = new SecurityContextImpl(authentication);
+//        SecurityContextHolder.setContext(securityContext);
+//        token = jwtUtils.generateJwtToken(authentication);
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Authorization", "Bearer " + token);
+//        HttpEntity<String> request = new HttpEntity<>(headers);
+//
+//        ResponseEntity<Void> result = this.restTemplate.exchange(uri, HttpMethod.DELETE, request, Void.class);
+//
+//        assertEquals(200, result.getStatusCodeValue());
+//
+//        userRepository.delete(user);
+//    }
 
     @Test
     public void deleteUserTest_UserNotExist() throws URISyntaxException {

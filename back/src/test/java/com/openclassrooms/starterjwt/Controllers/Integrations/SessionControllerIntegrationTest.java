@@ -2,6 +2,7 @@ package com.openclassrooms.starterjwt.Controllers.Integrations;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.openclassrooms.starterjwt.AuthConfig;
 import com.openclassrooms.starterjwt.dto.SessionDto;
 import com.openclassrooms.starterjwt.mapper.SessionMapper;
 import com.openclassrooms.starterjwt.models.Session;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.*;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -33,6 +35,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Import(AuthConfig.class)
 public class SessionControllerIntegrationTest {
 
     @Autowired
@@ -108,8 +111,8 @@ public class SessionControllerIntegrationTest {
     public void findAllSessionTest() throws URISyntaxException {
         Session session = new Session();
         session.setName("Yoga session");
-        session.setDescription("A relaxing yoga session"); // Set the description
-        session.setDate(new Date()); // Set the date
+        session.setDescription("A relaxing yoga session");
+        session.setDate(new Date());
         sessionRepository.save(session);
 
         final String baseUrl = "http://localhost:" + randomServerPort + "/api/session";
@@ -122,7 +125,7 @@ public class SessionControllerIntegrationTest {
         ResponseEntity<List> result = this.restTemplate.exchange(uri, HttpMethod.GET, request, List.class);
 
         assertEquals(200, result.getStatusCodeValue());
-        assertTrue(result.getBody().size() > 0);
+        assertTrue(!result.getBody().isEmpty());
 
         sessionRepository.delete(session);
     }

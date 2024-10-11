@@ -1,166 +1,272 @@
 package com.openclassrooms.starterjwt.Controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.openclassrooms.starterjwt.AuthConfig;
 import com.openclassrooms.starterjwt.controllers.SessionController;
 import com.openclassrooms.starterjwt.dto.SessionDto;
 import com.openclassrooms.starterjwt.mapper.SessionMapper;
 import com.openclassrooms.starterjwt.models.Session;
+import com.openclassrooms.starterjwt.models.Teacher;
+import com.openclassrooms.starterjwt.repository.SessionRepository;
+import com.openclassrooms.starterjwt.security.jwt.JwtUtils;
+import com.openclassrooms.starterjwt.security.services.UserDetailsServiceImpl;
 import com.openclassrooms.starterjwt.services.SessionService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(SpringExtension.class)
+@WebMvcTest(SessionController.class)
+@Import(AuthConfig.class)
 class SessionControllerTest {
+    @Autowired
+    private MockMvc mockMvc;
 
-    @InjectMocks
-    private SessionController sessionController;
-
-    @Mock
-    private SessionMapper sessionMapper;
-
-    @Mock
+    @MockBean
     private SessionService sessionService;
 
+    @MockBean
+    private SessionRepository sessionRepository;
+
+    @MockBean
+    private JwtUtils jwtUtils;
+
+    @MockBean
+    private AuthenticationManager authenticationManager;
+
+    @MockBean
+    private SessionMapper sessionMapper;
+
+    @MockBean
+    private UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Test
-    void findSessionByIdTest_valid(){
+    @WithMockUser(username="yoga@studio.com")
+    void findSessionByIdTest_valid() throws Exception {
+        // Arrange: Simuler les données Session et SessionDto
         Session session = new Session();
         session.setId(1L);
+
         SessionDto sessionDto = new SessionDto();
         sessionDto.setId(1L);
 
+        // Simuler le comportement des services
         when(sessionService.getById(1L)).thenReturn(session);
         when(sessionMapper.toDto(session)).thenReturn(sessionDto);
 
-        ResponseEntity<?> responseEntity = sessionController.findById("1");
+        // Act & Assert: Simuler l'appel HTTP GET et vérifier la réponse
+        mockMvc.perform(get("/api/session/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1L));
 
-        assertNotNull(responseEntity);
-        assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
-        assertEquals(sessionDto, responseEntity.getBody());
+        // Vérification des interactions
+        verify(sessionService).getById(1L);
+        verify(sessionMapper).toDto(session);
+        verifyNoMoreInteractions(sessionService, sessionMapper);
     }
 
+
     @Test
-    void findSessionByIdTest_NotFound(){
+    @WithMockUser(username="yoga@studio.com")
+    void findSessionByIdTest_NotFound() throws Exception {
         when(sessionService.getById(1L)).thenReturn(null);
-        ResponseEntity<?> responseEntity = sessionController.findById("1");
-        assertNotNull(responseEntity);
-        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+
+        mockMvc.perform(get("/api/session/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+
+        verify(sessionService).getById(1L);
+        verifyNoMoreInteractions(sessionService);
     }
 
     @Test
-    void FindAllSessionTest_Valid(){
+    @WithMockUser(username="yoga@studio.com")
+    void FindAllSessionTest_Valid() throws Exception {
         Session session = new Session();
         session.setId(1L);
         SessionDto sessionDto = new SessionDto();
         sessionDto.setId(1L);
 
-        ArrayList<Session> sessionArrayList = new ArrayList<Session>();
+        ArrayList<Session> sessionArrayList = new ArrayList<>();
         sessionArrayList.add(session);
 
-        ArrayList<SessionDto> sessionDtoArrayList = new ArrayList<SessionDto>();
+        ArrayList<SessionDto> sessionDtoArrayList = new ArrayList<>();
         sessionDtoArrayList.add(sessionDto);
 
         when(sessionService.findAll()).thenReturn(sessionArrayList);
         when(sessionMapper.toDto(sessionArrayList)).thenReturn(sessionDtoArrayList);
 
-        ResponseEntity<?> responseEntity = sessionController.findAll();
-        assertNotNull(responseEntity);
-        assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
-        assertEquals(sessionDtoArrayList, responseEntity.getBody());
+        mockMvc.perform(get("/api/session")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id").value(1L));
+
+        verify(sessionService).findAll();
+        verify(sessionMapper).toDto(sessionArrayList);
+        verifyNoMoreInteractions(sessionService, sessionMapper);
     }
 
     @Test
-    void createSessionTest(){
+    @WithMockUser(username="yoga@studio.com")
+    void createSessionTest() throws Exception {
         Session session = new Session();
         session.setId(1L);
+
         SessionDto sessionDto = new SessionDto();
+        sessionDto.setName("Yoga session");
         sessionDto.setId(1L);
+        sessionDto.setDate(new Date());
+        sessionDto.setTeacher_id(1L);
+        sessionDto.setDescription("Session description");
 
         when(sessionMapper.toEntity(sessionDto)).thenReturn(session);
         when(sessionService.create(session)).thenReturn(session);
         when(sessionMapper.toDto(session)).thenReturn(sessionDto);
 
-        ResponseEntity<?> response = sessionController.create(sessionDto);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(sessionDto, response.getBody());
+        mockMvc.perform(post("/api/session")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(sessionDto)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1L));
+
+        verify(sessionMapper).toEntity(sessionDto);
+        verify(sessionService).create(session);
+        verify(sessionMapper).toDto(session);
+        verifyNoMoreInteractions(sessionMapper, sessionService);
     }
 
+
+
     @Test
-    void updateSessionTest_valid(){
+    @WithMockUser(username="yoga@studio.com")
+    void updateSessionTest_valid() throws Exception {
         Session session = new Session();
         session.setId(1L);
+
         SessionDto sessionDto = new SessionDto();
+        sessionDto.setName("Yoga session");
         sessionDto.setId(1L);
+        sessionDto.setDate(new Date());
+        sessionDto.setTeacher_id(1L);
+        sessionDto.setDescription("Session description");
 
         when(sessionMapper.toEntity(sessionDto)).thenReturn(session);
-        when(sessionService.update(1L,session)).thenReturn(session);
+        when(sessionService.update(1L, session)).thenReturn(session);
         when(sessionMapper.toDto(session)).thenReturn(sessionDto);
 
-        ResponseEntity<?> response = sessionController.update("1",sessionDto);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(sessionDto, response.getBody());
+        mockMvc.perform(put("/api/session/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(sessionDto)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1L));
+
+        verify(sessionMapper).toEntity(sessionDto);
+        verify(sessionService).update(1L, session);
+        verify(sessionMapper).toDto(session);
+        verifyNoMoreInteractions(sessionMapper, sessionService);
     }
 
+
     @Test
-    void updateSessionTest_NotFound(){
+    @WithMockUser(username="yoga@studio.com")
+    void updateSessionTest_NotFound() throws Exception {
         Session session = new Session();
         session.setId(1L);
 
-        when(sessionService.update(2L,session)).thenReturn(null);
+        SessionDto sessionDto = new SessionDto();
+        sessionDto.setName("Yoga session");
+        sessionDto.setId(1L);
+        sessionDto.setDate(new Date());
+        sessionDto.setTeacher_id(1L);
+        sessionDto.setDescription("Session description");
 
-        ResponseEntity<?> responseEntity = sessionController.findById("2");
-        assertNotNull(responseEntity);
-        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+        when(sessionMapper.toEntity(sessionDto)).thenReturn(session);
+        when(sessionService.update(2L, session)).thenReturn(null);
+
+        mockMvc.perform(put("/api/session/2")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(sessionDto)))
+                .andExpect(status().isOk());
+
+        verify(sessionMapper).toEntity(sessionDto);
+        verify(sessionService).update(2L, session);
     }
 
     @Test
-    void deleteSessionTest(){
+    @WithMockUser(username="yoga@studio.com")
+    void deleteSessionTest() throws Exception {
         Session session = new Session();
         session.setId(1L);
 
         when(sessionService.getById(1L)).thenReturn(session);
 
-        ResponseEntity<?> responseEntity = sessionController.save("1");
+        mockMvc.perform(delete("/api/session/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
 
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         verify(sessionService).delete(1L);
         verify(sessionService).getById(1L);
         verifyNoMoreInteractions(sessionService);
     }
 
     @Test
-    void deleteSessionTest_NotFound(){
+    @WithMockUser(username="yoga@studio.com")
+    void deleteSessionTest_NotFound() throws Exception {
         when(sessionService.getById(2L)).thenReturn(null);
 
-        ResponseEntity<?> responseEntity = sessionController.save("2");
-        assertNotNull(responseEntity);
-        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
-    }
+        mockMvc.perform(delete("/api/session/2")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
 
-    @Test
-    void partcipateToSessionTest(){
-        ResponseEntity<?> responseEntity = sessionController.participate("1","1");
-
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        verify(sessionService).participate(1L,1L);
+        verify(sessionService).getById(2L);
         verifyNoMoreInteractions(sessionService);
     }
 
     @Test
-    void noLongerParticipateToSessionTest(){
-        ResponseEntity<?> responseEntity = sessionController.noLongerParticipate("1","1");
+    @WithMockUser(username="yoga@studio.com")
+    void participateToSessionTest() throws Exception {
+        mockMvc.perform(post("/api/session/1/participate/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
 
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        verify(sessionService).noLongerParticipate(1L,1L);
+        verify(sessionService).participate(1L, 1L);
         verifyNoMoreInteractions(sessionService);
     }
+
+    @Test
+    @WithMockUser(username="yoga@studio.com")
+    void noLongerParticipateToSessionTest() throws Exception {
+        mockMvc.perform(delete("/api/session/1/participate/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        verify(sessionService).noLongerParticipate(1L, 1L);
+        verifyNoMoreInteractions(sessionService);
+    }
+
 
 }
