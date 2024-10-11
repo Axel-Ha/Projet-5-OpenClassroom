@@ -35,7 +35,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Import(AuthConfig.class)
 public class SessionControllerIntegrationTest {
 
     @Autowired
@@ -111,8 +110,8 @@ public class SessionControllerIntegrationTest {
     public void findAllSessionTest() throws URISyntaxException {
         Session session = new Session();
         session.setName("Yoga session");
-        session.setDescription("A relaxing yoga session");
-        session.setDate(new Date());
+        session.setDescription("A relaxing yoga session"); // Set the description
+        session.setDate(new Date()); // Set the date
         sessionRepository.save(session);
 
         final String baseUrl = "http://localhost:" + randomServerPort + "/api/session";
@@ -125,7 +124,7 @@ public class SessionControllerIntegrationTest {
         ResponseEntity<List> result = this.restTemplate.exchange(uri, HttpMethod.GET, request, List.class);
 
         assertEquals(200, result.getStatusCodeValue());
-        assertTrue(!result.getBody().isEmpty());
+        assertTrue(result.getBody().size() > 0);
 
         sessionRepository.delete(session);
     }
